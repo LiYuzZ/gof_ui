@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" />
+    <title>GoFun运营管理系统</title>
+    <link rel="icon" type="image/x-icon" href="./nav/webapp/favicon.ico" />
+    <link rel="stylesheet" href="./nav/webapp/css/index.css?v=3" />
+    <link rel="stylesheet" href="./nav/webapp/css/head.css?v=3" />
+    <link rel="stylesheet" href="./nav/webapp/css/custom.css?v=3" />
+	
+</head>
+
+<body class="old_sty bg_default">
+<!-- 还有这样的弹窗 -->
+<div id="menu-model">
+    <iframe name="left" id="left" class="left_model" height="100%" width="100%" border="0" frameborder="0" scrolling="auto" src="./nav/webapp/left.html"></iframe>
+</div>
+<!-- 页眉 -->
+<header class="home-header new_home_header">
+    <div id="menu-btn"></div>
+    <div class="home-logo">
+        <h1>
+            <a onclick="toHomePage()"><img alt="" src="./nav/webapp/images/portal_Login_logo01.png" /></a>
+            <!--<a onclick="toHomePage()"><img th:src="@{/images/logo-crm.png}" alt="" /></a>-->
+        </h1>
+    </div>
+    <div class="home-header-news">
+        <span>6</span>
+    </div>
+</header>
+<div class="home-header-usr">
+    <div style="position: relative; height: 70px;">
+        <img id="imagesUrl" src="images/admin.jpg" />
+        <span id="msgSpan1" style="position: absolute;top: 10px;right: 85px;border-radius: 50%;background: red;height: 20px;width: 20px;color: #272828;line-height: 18px;font-size: 12px;text-align: center;">0</span>
+        <span id="topLoginName"></span>
+    </div>
+    <div class="iconfont setting_index"><img src="./images/nav_btn_set2.png" /></div>
+    <ul id="home-header-usr-ul" style="">
+        <li onclick="showUserInfo()"><i class="iconfont">&#xe66a;</i>个人信息</li>
+        <li onclick="showUpdatePwd()"><i class="iconfont">&#xe65a;</i>修改密码</li>
+        <li onclick="showSuggest()"><i class="iconfont">&#xe61f;</i>建议反馈</li>
+        <li id="logout" onclick="logout()"><i class="iconfont" style="font-size: 16px;">&#xe62e;</i>退出登录</li>
+        <li class="index_skin" style="cursor: auto;padding: 10px 11px; border-top: 1px solid #ddd; color: #c3cac8;">
+            skin
+            <div class="skin_bg">
+                <img class="skin_img" src="./images/small-bg.jpg" />
+                <img class="skin_img" src="./images/small-bg2.jpg" />
+                <img class="skin_img" src="./images/small-bg3.jpg" />
+                <img class="skin_img" src="./images/small-bg4.jpg" />
+                <img class="skin_img" src="./images/small-bg5.jpg" />
+                <img class="skin_img" src="./images/small-bg6.jpg" />
+                <img class="skin_img" src="./images/small-bg7.jpg" />
+                <img class="old_style_img" src="./images/bgold.jpg" />
+                <img class="new_style_img" src="./images/bgold.jpg" />
+            </div>
+        </li>
+    </ul>
+</div>
+<table id="main-table" width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <div class="left_web_nav_l"></div>
+            <div class="left_web_nav_r"></div>
+        </td>
+        <td class="td-hidden" width="190" valign="t0op" style="border-right: 1px solid #ccc;">
+            <iframe name="left" class="left_web" id="left" height="auto" width="100%" border="0" frameborder="0" scrolling="auto" src="./nav/webapp/left.html"></iframe>
+        </td>
+        <td class="td-content" valign="top">
+            <div class="showbtn new_showbtn"><em class="" title="导航切换"></em><span class=""></span><i class="iconfont" style="display: none;">&#xe628;</i></div>
+            <iframe name="right" id="right" height="100%" width="100%" border="0" frameborder="0" scrolling="auto" src="./table.html?v=1"></iframe>
+        </td>
+    </tr>
+</table>
+
+</body>
+<script type="text/javascript" src="./nav/webapp/js/jquery.min.js"></script>
+<script type="text/javascript" src="./nav/webapp/js/fastclick.js"></script>
+<script type="text/javascript" src="./nav/webapp/js/left.js"></script>
+<script type="text/javascript" src="./nav/webapp/layer/layer.js"></script>
+<script src="./nav/webapp/js/jquery.form.js"></script>
+<script src="./nav/webapp/js/table-plugin/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="./nav/webapp/js/table-plugin/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="./nav/webapp/js/jquery-validate/jquery.validate.js"></script>
+<script type="text/javascript" defer="3" src="./nav/webapp/js/index.js"></script>
+
+</html>

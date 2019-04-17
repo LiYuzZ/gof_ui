@@ -1,0 +1,37 @@
+@charset "UTF-8";
+body {
+	font-family: 'microsoft yahei', Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+/* ȫ��Ļ���� */
+.vertical-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.vertical-center2 {
+	top: 50%;
+	left: 50%;
+}
+.bg {
+	background: url(../img/login/4.jpg) no-repeat center fixed;
+	background-size:100%
+}
+
+/* div͸��  */
+.touMingDiv{  
+    color:#fff;  
+    background:rgba(0,0,0,0.6);  
+    background:#000 9;/*CSS Hack,ֻ�ܶ�ie9���������ie6,ie7,ie8��Ч�����ie10,FF,Cherome��ʧȥ͸��Ч��*/  
+    filter:Alpha(opacity=60);/*ֻ��ie7,ie8��Ч*/  
+}  
+.touMingDiv p,  
+.touMingDiv div,  
+.touMingDiv img{  
+    position:relative;  
+    /*������absolute��������ʹ���ֲ�͸��������������Ϊ��  
+    ����ie9,ie8,ie7�±���͸�����������ϵ����ֲ�͸����Ч��*/  
+}  

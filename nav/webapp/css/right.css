@@ -1,0 +1,589 @@
+@charset"utf-8";
+* {
+    padding:0;
+    margin:0;
+    line-height:100%;
+    box-sizing: border-box;
+}
+body, h1, h2, h3, h4, h5, h6 {
+    font-size:12px;
+    font-family:Verdana, Geneva, sans-serif'Microsoft Yahei';
+}
+ul, ol {
+    list-style:none;
+}
+a {
+    color:#000;
+    text-decoration:none;
+}
+a img {
+    border:0;
+}
+i, em {
+    font-style:normal;
+}
+b, strong {
+    font-weight:normal;
+}
+html, body {
+    background:rgba(244, 244, 244);
+}
+.fl {
+    float:left;
+}
+.fr {
+    float:right;
+}
+.por {
+    position:relative;
+}
+.clearfix:after {
+    display:block;
+    content:'';
+    clear:both;
+}
+.clearfix {
+    zoom:1;
+}
+
+
+.prompt_body {
+    overflow: hidden;
+    min-width: 1080px;
+    margin-top:0;
+}
+.prompt_body .prompt_l:nth-of-type(2) {
+    margin:0 1.5%;
+}
+.prompt_l {
+    float: left;
+    /* width: 49%; */
+    width:32%;
+    border: 1px solid rgba(201, 201, 201, 1);
+    border-radius:4px;
+}
+.prompt_r {
+    /* width: 49%; */
+    width:33%;
+    float: left;
+    border: 1px solid rgba(201, 201, 201, 1);
+    border-radius:4px;
+    margin: 0 1.5%;
+}
+.prompt_con {
+}
+.prompt_con li:nth-of-type(even) {
+    background:rgba(204, 204, 204, 0.15);
+}
+.prompt_con ul {
+    max-height:300px;
+    overflow: hidden;
+}
+.prompt_h {
+    position: relative;
+    height: 40px;
+    border-bottom: 1px solid;
+    border-color: rgba(201, 201, 201, 1);
+    background: linear-gradient(rgba(249, 249, 249, 0.9686274509803922), rgba(194, 193, 193, 0.32));
+    /* Safari 5.1 - 6.0 */
+    background:linear-gradient(rgba(249, 249, 249, 0.9686274509803922), rgba(194, 193, 193, 0.32));
+    /* Opera 11.1 - 12.0 */
+    background:linear-gradient(rgba(249, 249, 249, 0.9686274509803922), rgba(194, 193, 193, 0.32));
+    /* Firefox 3.6 - 15 */
+    background:linear-gradient(rgba(249, 249, 249, 0.9686274509803922), rgba(194, 193, 193, 0.32));
+    /* 标准的语法 */
+    /* background: #0DBC60; */
+}
+.prompt_h h3 {
+    position: absolute;
+    left: 30px;
+    top: 11px;
+    text-indent: 10px;
+    list-style: none;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color:#323232;
+    font-weight: 550;
+}
+.prompt_l .notice-title {
+    display: inline-block;
+    margin-top: 7px;
+    width: 30px;
+    height: 23px;
+    margin-left: 10px;
+    background: url(../images/index_notice.png) no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+}
+.prompt_l .menu-title {
+    display: inline-block;
+    margin-top: 7px;
+    width: 30px;
+    height: 23px;
+    margin-left: 10px;
+    vertical-align: middle;
+    background-size: contain;
+    background: url(../images/index_menu.png) no-repeat;
+    vertical-align: middle;
+    background-size: contain;
+}
+.prompt_r .file-title {
+    background:url(../images/index_file.png) no-repeat;
+    background-size: contain;
+    display: inline-block;
+    margin-top: 7px;
+    width: 30px;
+    height: 23px;
+    margin-left: 10px;
+    vertical-align: middle;
+    background-size: contain;
+}
+.prompt_h .problem-title {
+    background:url(../images/index_problem.png) no-repeat;
+    background-size: contain;
+    display: inline-block;
+    margin-top: 7px;
+    width: 30px;
+    height: 23px;
+    margin-left: 10px;
+    vertical-align: middle;
+    background-size: contain;
+}
+.prompt_h p {
+    text-align: center;
+    font-size: 14px;
+    line-height: 40px;
+}
+.prompt_con {
+    background: #fff;
+    height: 310px;
+    padding:10px 0;
+    position: relative;
+    padding-bottom:50px;
+    padding-top:10px;
+    border-radius: 3px;
+}
+.notic_btn {
+}
+.prompt_con li {
+    display: -webkit-flex;
+    display: flex;
+    font-size: 14px;
+    padding:1px 10px;
+    cursor:pointer;
+}
+.prompt_con li:hover {
+    background: #F1F1F2;
+}
+.prompt_con li p {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex: 1;
+    font-weight: 400;
+    font-size: 14px;
+    color:#465064;
+    padding-left: 25px;
+    cursor: pointer;
+    line-height: 18px;
+}
+.prompt_con li span {
+    line-height:38px;
+    font-size: 14px;
+    color: #a19b9b;
+}
+.prompt_con li .file {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex: 1;
+    font-weight: 400;
+    font-size: 15px;
+    color: #465064;
+    margin-left: 15px;
+    line-height: 37px;
+}
+.notic_bac p {
+    background: url("../images/right_2.gif")no-repeat;
+    background-position: 0px 5px;
+}
+/* .prompt_con li span:nth-of-type(1) {
+	border: 1px solid #FF0000;
+	border-radius: 3px;
+	padding: 2px 4px;
+	color: #FF0000;
+	margin-right: 10px;
+}
+
+.prompt_con li span:nth-of-type(2) {
+	border: 1px solid #666;
+	border-radius: 3px;
+	padding: 2px 4px;
+	color: #666;
+} */
+
+/* .prompt_con li span:nth-of-type(3) {
+	font-size: 13px;
+	color: #999;
+	margin-right: 5px;
+} */
+
+/* .prompt_con li span:nth-of-type(4) {
+	color: #999;
+} */
+.prompt_h div {
+}
+.prompt_layer {
+    background: rgba(0, 0, 0, 0.54);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: none;
+}
+.prompt_tip {
+    background: #fff;
+    text-align: center;
+    min-height:230px;
+    margin-left: 30%;
+    margin-top: 5%;
+    padding: 20px 0;
+    padding-bottom: 110px;
+    overflow: hidden;
+    position: relative;
+    display: none;
+    z-index: 101;
+    width: 40%;
+    min-width: 500px;
+    border-radius:5px;
+    position:absolute;
+    top:10%;
+}
+.prompt_tip h4 {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px;
+    color: #666666;
+    line-height: 60px;
+}
+.pro_tip_con {
+}
+.pro_tip_con p {
+    font-weight: 400;
+    font-size: 20px;
+    color: #666666;
+    padding: 20px 20px;
+    text-indent: 25px;
+    line-height: 27px;
+}
+.pro_time {
+    text-align: right;
+    margin-top: -30px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+.pro_time small {
+    font-size: 13px;
+    color: #999;
+}
+.prompt_close {
+    position: absolute;
+    bottom: 50px;
+    color: #8e8a8a;
+    border: 1px solid #6d6565;
+    padding: 10px 50px;
+    border-radius:3px;
+    font-size: 15px;
+    display: inline-block;
+    margin-left: -60px;
+}
+.loadImg {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 9998;
+    background-image: url(../images/loading.gif)
+}
+/**IV*/
+.MaskLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*     background-color: #8FB0D1; */
+    z-index: 9997;
+    -moz-opacity: 0.45;
+    opacity: 0.45;
+    filter: alpha(opacity=80);
+}
+.notic_con {
+    position: absolute;
+    bottom:15px;
+    left:0;
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    justify-content:center;
+    align-items:center;
+    text-align: center;
+}
+.notic_btn {
+    display: inline-block;
+}
+.notic_btn a {
+    display: inline-block;
+    height: 32px;
+    color: #666;
+    border: 1px solid #d7dde4;
+    border-radius: 4px;
+    background-color: #fff;
+    min-width: 32px;
+    line-height: 30px;
+    cursor: pointer;
+    font-family: Arial;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    text-align: center;
+    float: left;
+    list-style: none;
+    margin-right:6px;
+}
+.notic_btn span {
+    background-color: #39f;
+    border-color: #39f;
+    height: 32px;
+    margin-right: 6px;
+    color: #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid #d7dde4;
+    border-radius: 4px;
+    min-width: 32px;
+    line-height: 30px;
+    cursor: pointer;
+    font-family: Arial;
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    text-align: center;
+    float: left;
+    list-style: none;
+}
+.notic_btn a:hover {
+    border:1px solid #39f;
+    color: #39f;
+}
+.prompt_bg {
+    height: 100%;
+    background: #F4F4F4;
+    padding:15px;
+}
+
+/*最下*/
+.prompt_bot {
+    min-height: 150px;
+    margin-top: 15px;
+    width: 100%;
+    float: initial;
+    width: 100%;
+}
+.prompt_bot .prompt_con {
+    min-height:180px;
+    padding-bottom: 0;
+}
+.home-page-text {
+    width: 23px;
+}
+.prompt_bot .prompt_bot_ul {
+    overflow: hidden;
+    width: 100%;
+}
+.prompt_bot .prompt_bot_ul li {
+    float: left;
+    width: 15.65%;
+    height: 140px;
+    background: #fff;
+    border-radius: 4px;
+    /* margin: 20px 10px; */
+    text-align: center;
+    margin: 15px 0.5%;
+    cursor: pointer;
+}
+.prompt_bot .prompt_bot_ul img {
+    display:inline-block;
+    width:35px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+.prompt_bot .prompt_bot_ul span {
+    display: block;
+}
+.prompt_h a {
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    color: #72b4dc;
+    height: 40px;
+    line-height: 40px;
+}
+
+
+/*小屏幕*/
+@media (max-width: 768px) {
+    .prompt_body {
+        width: 100%;
+        min-width: auto;
+    }
+    .prompt_l {
+        width: 100%;
+    }
+    .prompt_r {
+        width: 100%;
+        margin: 15px 0;
+    }
+    .prompt_bot .prompt_bot_ul {
+        margin:0;
+        padding: 1vw;
+    }
+    .prompt_bot .prompt_bot_ul li {
+        float: left;
+        width: 27vw;
+        height: 100px;
+        margin: 1.25vw 1.4vw;
+        background: #fff;
+        border-radius: 4px;
+        text-align: center;
+    }
+    .prompt_bot .prompt_bot_ul img {
+        display: inline-block;
+        width: 35px;
+        margin-top: 22px;
+        margin-bottom: 15px;
+    }
+    .prompt_l .iconfont{
+        float: right;
+        font-size: 20px;
+        color: #c9c9c9;
+        margin: 8px;
+    }
+    .prompt_l .link_set{
+        display: none;
+    }
+}
+.prompt_l .iconfont{
+    float: right;
+    font-size: 15px;
+    color: #323232;
+    margin-right: 0;
+    line-height: 40px;
+    vertical-align: middle;
+}
+.prompt_l .iconfont img{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    opacity: 0.8;
+    margin-left: 10px;
+    margin-top: -4px;
+}
+
+.modal_link{
+
+}
+.modal_link .modal-lg{
+    width: 80%;
+}
+.modal_link  .modal-content{
+
+}
+
+.modal_link .modal-header{
+
+}
+.modal_link .modal-body{
+    padding: 40px;
+}
+.modal_link .modal-footer{
+    text-align: center;
+}
+.modal_link .set_list{
+
+}
+.modal_link .col-md-2{
+    PADDING: 10px 20PX;
+    background: #16b86e;
+    text-align: center;
+    color: #fff;
+    border-radius: 2px;
+}
+.modal_link .col-md-2 span{
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 30px;
+    width: 135px;
+    background: #16b86e;
+    color: #f1f2f3;
+}
+.modal_link .col-md-10{
+
+}
+.modal_link .set_list ul{
+    overflow: hidden;
+}
+.modal_link .set_list li{
+    float: left;
+    font-size: 13px;
+    background: #e2e5e9;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+.modal_link .set_list .set_Last_none{
+    padding: 10px;
+}
+.modal_link .set_list .set_two_act{
+    background: #16b86e;
+    color: #fff;
+}
+.modal_link .set_list .set_Last_h{
+    padding: 10px 20px;
+}
+.modal_link .set_list .set_Last_s{
+    top: 33px;
+    left: 15px;
+    background: #ededed;
+    border: 1px solid #ddd;
+    z-index: 100;
+    display: none;
+}
+.modal_link .set_list .set_two_li:hover .set_Last_s{
+    display: block;
+}
+.modal_link .set_list .set_Last_s span{
+    display: block;
+    padding: 0px 10px;
+    line-height: 35px;
+    color: #3a3a3a;
+}
+.modal_link .set_list .set_Last_s span:hover{
+    background: #ddd;
+}
+.modal_link .set_list .set_Last_s .set_Last_s_act{
+    background: #ededed;
+    color: #16b86e;
+}
+.linkClass{
+    overflow: hidden;
+    padding: 0 10px;
+}

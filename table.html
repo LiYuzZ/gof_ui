@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+	<title>Gofun-CRM平台系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="./css/cloud-admin.css" >
+	<link rel="stylesheet" type="text/css" href="./css/weui.min.css">
+	<link rel="stylesheet" type="text/css"  href="./css/themes/default.css" id="skin-switcher" >
+	<link rel="stylesheet" type="text/css"  href="./css/responsive.css" >
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./js/bootstrap-select/css/bootstrap-select.css">
+	<link rel="stylesheet" type="text/css" href="./css/public_skin.css">
+
+   	<!-- JQUERY -->
+	<script type="text/javascript" src="./js/jquery/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.form.js"></script>
+	<script type="text/javascript" src="./js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<!-- BOOTSTRAP -->
+	<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="./js/table-plugin/bootstrap-table.min.js"></script>
+	<script type="text/javascript" src="./js/table-plugin/locale/bootstrap-table-zh-CN.min.js"></script>
+	<script type="text/javascript" src="./js/jquery-validate/jquery.validate.js"></script>
+	<script type="text/javascript" src="./js/jquery-validate/jquery.validate.addmethod.js"></script>
+	<!-- 多选下拉列表 -->
+	<script type="text/javascript" src="./js/bootstrap-select/js/bootstrap-select.js"></script>
+	<script type="text/javascript" src="./js/bootstrap-select/js/i18n/defaults-zh_CN.min.js"></script>
+	<script type="text/javascript" src="./js/layer/1.9.3/layer.min.js"></script>
+	<script type="text/javascript" src="./js/layer/1.9.3/extend/layer.ext.js"></script>
+	<script type="text/javascript" src="./js/DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="./js/common.js"></script>
+	<!-- ART -->
+	<script type="text/javascript" src="./js/art/artDialog.source.js?skin=idialog"></script>
+	<script type="text/javascript" src="./js/art/plugins/iframeTools.source.js"></script>
+	<script type="text/javascript" src="./js/rotate/jquery.rotate.min.js"></script>
+	<script type="text/javascript">
+	
+		$(function(){
+			/**回车事件*/
+			document.onkeydown = function(e){ 
+			    var ev = document.all ? window.event : e;
+			    if(ev.keyCode==13) {
+			    	initTable();
+			    	return false;
+			     }
+			}
+			var uAgent = navigator.userAgent;
+			var isAndroid = uAgent.indexOf("Android") > -1 || uAgent.indexOf("Adr") > -1;
+			var isiOS = !!uAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+			/**增加兼容*/
+			if (isAndroid || isiOS) {
+				$(".box-body").css("overflow-x", "auto");
+				$(".box-body").css("width", "100%");
+			}
+			
+		});
+		var ctx = "";
+		function validateData(from) {
+			$.validator.setDefaults({
+			    submitHandler: function(form) {
+			    	formOnSubmit();
+			    }
+			});
+			$(document).ready(function() {
+			    $("#" + from).validate();
+			});
+		}
+		
+		function addLogList(type,bussnisId){
+			 
+			 var dom = $("#addLogList");
+		        if(dom.length > 0){
+		        	
+		        	$(dom).empty();
+		        	$(dom).append(getLogString());
+		        	$("#logType").val(type);
+		        	$("#businessId").val(bussnisId);
+		        	bindTime("logStartTimeDesc", "yyyy-MM-dd HH:mm:ss");
+		    		bindTime("logEndTimeDesc", "yyyy-MM-dd HH:mm:ss");
+		    		initTableLog();
+		        }
+		 }
+		 function initTableLog() { 
+				$("#cusTableLog").bootstrapTable('destroy').bootstrapTable({
+		            //
+		           method: 'post',
+		           contentType:"application/x-www-form-urlencoded",
+		           striped: true,
+		           cache: false,   
+		           pagination: true, 
+		           sortable: true,
+		           sortOrder: "asc", 
+		           pageSize: 10,   
+		           pageNumber:1,  
+		           pageList: [5, 10, 15, 20, 25],   
+		           queryParamsType : "undefined", 
+		           url: ctx+"/commonPage/query" ,                 
+		           queryParams: function(params) {
+		               var param = { 
+		                     page: params.pageNumber,    
+		                     rows: params.pageSize, 
+		                     startTime: $('#logStartTimeDesc').val(),
+		                     endTime: $('#logEndTimeDesc').val(),
+		                     createUser: $('#logCreateUser').val(),
+		                     content: $('#logContent').val(),
+		                     type: $('#logType').val(),
+		                     businessId: $('#businessId').val(),
+		                     sort:params.sortName,
+		                     order:params.sortOrder
+		                   };
+		               return param;
+		           },
+		           sidePagination: "server",
+		           strictSearch: true,
+		           pagination: true,
+		           idField : "id",
+		           columns: [
+		               { field: 'id', 				title: 'ID',	visible:'False'}, 
+		               { field: 'createTime', 		title: '操作日期',  align: 'center'}, 
+		               { field: 'createUser',		title: '操作人',  align: 'center'},
+		               { field: 'content', 			title:'操作内容' ,  align: 'center'},
+		           ]
+		       });
+				
+				$('#cusTableLog').bootstrapTable('hideColumn', 'id');
+				
+			 }
+	</script>
+	<style>
+		.error{
+			color:red;
+		}
+		.btn,.form-control {
+			border-radius:0px !important;
+		}
+		.box.border.green > .box-title {
+			background-color:#0DBC60;
+		}
+		.input-group-addon{border-radius:0px !important;}
+		#addLogList .form-control{height:28px;}
+		#addLogList .control-label{padding-top: 4px;}
+		#addLogList .btn{padding: 4px 8px;}
+		.box.border.green > .box-title .tools > a{cursor:pointer;}
+		
+		.loadImg{position: absolute;width: 100px;height: 100px;z-index: 9998;background-image:url(../../img/load.gif)}
+		/**IV*/
+		.MaskLayer{position: absolute;top:0;left:0;width: 100%;height: 100%;background-color: #8FB0D1;z-index:9997;-moz-opacity: 0.45;opacity:0.45;filter: alpha(opacity=80);}
+		
+	</style><link rel="stylesheet" href="./js/zTree3.5/css/custom/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="./js/zTree3.5/js/jquery.ztree.core-3.5.min.js"></script>
+<script type="text/javascript" src="./js/zTree3.5/js/jquery.ztree.excheck-3.5.min.js"></script>
+<script type="text/javascript" src="./js/zTree3.5/js/jquery.ztree.exedit-3.5.min.js"></script>
+<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=b1a95ad7636abd538589569dff0fc7f6&plugin=AMap.Autocomplete,AMap.PlaceSearch,AMap.Geocoder,AMap.DistrictSearch"></script>
+<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+</head>
+<body>
+	<!-- PAGE -->
+	<section id="page">
+		<div id="main-content">
+			<div class="container">
+				<div class="separator"></div>
+				<!-- DATA TABLES -->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BOX -->
+						<div class="box border green">
+							<div class="box-title">
+								<h4>
+									<i class="fa fa-table"></i>城市信息
+								</h4>
+								<div class="tools hidden-xs"></div>
+							</div>
+							<form action="/city/saveCity.do" id="addForm" method="post">
+							<div class="box-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="well form-horizontal">
+											<div class="form-group">
+												<label class="col-sm-1 control-label"><font color="red">基本信息</font></label> 
+											</div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label"><font color="red">*</font>城市编码:</label> 
+												<div class="col-sm-4">
+													<input type="text" id="cityCode" name="cityCode" class="form-control" value="" maxlength="4" required="required" data-msg-required="请输入城市编码"  />
+												</div>
+												<label class="col-sm-2 control-label"><font color="red">*</font>城市:</label> 
+												<div class="col-sm-4">
+													<input type="text" name="cityName" class="form-control" value="" required="required" data-msg-required="请输入城市" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label"><font color="red">*</font>坐标Lat/坐标Lon:</label> 
+												<div class="col-sm-1">
+													<input type="text" id="lat" name="lat" style="width:150px;" class="col-md-5 form-control" readonly="readonly" value="" required="required" data-msg-required="请选择坐标" /> 
+												</div>
+												<div class="col-sm-1"></div>
+												<div class="col-sm-1">
+													<input type="text" id="lon" name="lon" style="width:150px;" class="col-md-5 form-control" readonly="readonly" value="" required="required" data-msg-required="请选择坐标" />
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label"></label> 
+												<div class="col-md-6" style="height:300px;width: 600px;">
+													<div id="container" style="position: relative"></div>
+													
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label"></label> 
+												<div class="col-md-4">
+													<font color="red">点击地图，获取中心点坐标</font>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label"><font color="red">*</font>行政区/县:</label>
+		                                        <div class="col-sm-8">
+		                                            <input type="hidden" id="codes" name="codes" value="" />
+		                                            <input type="text" class="form-control searchInputBg" 
+		                                            	id="areaNames"  name="areaNames" onclick="selectCodes()" required="required" data-msg-required="请选择行政区/县" />
+		                                        </div>
+										    </div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label"><font color="red">*</font>首字母（大写）:</label> 
+												<div class="col-sm-4">
+													<input type="text" name="headCharacter" class="col-md-5 form-control" value="" maxlength="1" required="required"  data-msg-required="请输入首字母" />
+												</div>
+												<label class="col-sm-2 control-label"><font color="red">*</font>状态:</label> 
+												<div class="col-sm-4">
+													<select  class="col-md-12 full-width-fix form-control" id="status" name="status" required="required" data-msg-required="请选择状态">
+														<option value="">请选择</option>
+														<option value="0">关闭</option>
+														<option value="1">显示</option>
+														</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-1 control-label"><font color="red">运营信息</font></label> 
+											</div>										
+											<div class="form-group">
+												<label class="col-sm-2 control-label"><font color="red">*</font>异地还车:</label> 
+												<div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="parkingReturnType" name="parkingReturnType" required="required" data-msg-required="请选择异地还车">
+														<option value="">请选择</option>
+														<option value="1">异地还车</option>
+														<option value="0">非异地还车</option>
+														<option value="2">车位已满</option>
+														</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label"><font color="red">*</font>拍照功能:</label>
+												<div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="carPictures" name="carPictures" required="required" data-msg-required="请选择拍照功能">
+														<option value="">请选择</option>
+														<option value="0">关闭</option>
+														<option value="1">开启(强制上传)</option>
+														<option value="2">开启(非强制上传)</option>
+														</select>
+												</div>
+												<label class="col-sm-2 control-label"><font color="red">*</font>自动结单:</label>
+												<div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="autoSettleOrderSwitch" name="autoSettleOrderSwitch" onchange="getOrderSwitch()" required="required" data-msg-required="请选择自动结单功能">
+														<option value="">请选择</option>
+														<option value="1">开启</option>
+														<option value="0">关闭</option>
+														</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label"><font color="red">*</font>FUN开停:</label>
+												<div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="virtualSwitch" name="virtualSwitch" required="required" data-msg-required="请选择FUN开停" onchange="funType()">
+														<option value="">请选择</option>
+														<option value="1">开启</option>
+														<option value="0">关闭</option>
+														</select>
+												</div>
+												<label class="col-sm-2 control-label"><font color="red">*</font>预约还车位:</label>
+												<div class="col-sm-4">
+													<select onchange="cascade()"  class="col-md-12 full-width-fix form-control" id="appointmentSwitch" name="appointmentSwitch" required="required" data-msg-required="请选择预约还车位">
+														<option value="">请选择</option>
+														<option value="1">开启</option>
+														<option value="0">关闭</option>
+														</select>
+												</div>
+												<div class="form-group">
+													 <input class="col-md-5 form-control" style="width:110px;margin-left:40px;" disabled="disabled" type="number" required="required" data-msg-required="请输入预约还车位时间" id="appointmentTime" name="appointmentTime" oninput="if(value.length>4)value=value.slice(0,4)" />
+												     <label class="col-sm-1 control-label" style="width:60px">小时</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label"><font color="red">*</font>订单身份识别方式:</label>
+												<div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="useCarRecognitionSwitch" name="useCarRecognitionSwitch" required="required" data-msg-required="请选择用车识别方式">
+														<option value="">请选择</option>
+														<option value="1">身份证识别</option>
+														<option value="2">身份证识别/人脸识别</option>
+														<option value="3">人脸识别</option>
+														<option value="4">关闭</option>
+														<option value="5">手机人脸识别且身份证刷卡</option>
+														<option value="6">身份证刷卡且车内人脸识别</option>
+														<option value="7">身份证刷卡且（车内人脸识别或手机人脸识别）	</option>
+														<option value="8">车内人脸识别</option>
+														</select>
+												</div>
+											    <label class="col-sm-2 control-label"><font color="red">*</font>异地还车费:</label>
+												<div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="elseReturnSwitch" name="elseReturnSwitch" required="required" data-msg-required="请选择异地还车费" onchange="elseReturnType()">
+														<option selected="selected" value="">请选择</option>
+														<option value="1">开启</option>
+														<option value="0">关闭</option>
+														</select>
+												</div>
+												<div class="form-group">
+													 <input class="col-md-5 form-control" style="width:110px;margin-left:40px;" type="number" disabled="disabled" id="elseReturnAmount" name="elseReturnAmount"  oninput="if(value<0)value=0;if(value>999)value=999" />
+												     <label class="col-sm-1 control-label" style="width:60px">元</label>
+												</div>
+											</div>
+											<div class="form-group">
+											    <label class="col-sm-2 control-label"> 城市围栏开关:</label>
+												<div class="col-sm-4">
+													<select  class="col-md-12 full-width-fix form-control" id="barrierSwitch" name="barrierSwitch"  required="required" data-msg-required="城市围栏开关">
+														<option value="">请选择</option>
+														<option value="1">开启</option>
+														<option value="0">关闭</option>
+														</select>
+
+												</div>
+											 	
+												
+											</div>
+
+											<div class="form-group">
+												<label class="col-sm-2 control-label"><font color="red">*</font>芝麻信用:</label> 
+												<div class="col-sm-4">
+													<select class="col-md-4 full-width-fix form-control" id="zhimaCredit" name="zhimaCredit" required="required" data-msg-required="请选择评论">
+														<option value="">请选择</option>
+														<option value="1">开启</option>
+														<option value="0">关闭</option>
+														</select>
+												</div>
+												<label class="col-sm-2 control-label"><font color="red">*</font>推费支付方式:</label> 
+												<div class="col-sm-4">
+													<select class="col-md-4 full-width-fix form-control" id="pushFeeType" name="pushFeeType" required="required" data-msg-required="请选择支付方式">
+														<option value="">请选择</option>
+														<option value="1">手动扣款</option>
+														<option value="2">自动扣款</option>
+														</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label"><font color="red">*</font>推费延期天数:</label> 
+												 <div class="col-sm-4" >
+													<input type="number" id="pushFeeDelayDays" name="pushFeeDelayDays" class="col-md-4 full-width-fix form-control" value="1" />
+												</div>
+												<label class="col-sm-2 control-label"><font color="red">*</font>用车前拍照:</label>
+											    <div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="userCarBeforeTakePicture" name="userCarBeforeTakePicture" required="required" data-msg-required="请选择用车前拍照">
+														<option value="">请选择</option>
+														<option value="1">固定角度模式</option>
+														<option value="2">验车单模式</option>
+														<option value="0">关闭</option>
+														</select>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												 <label class="col-sm-2 control-label"><font color="red">*</font>用车后拍照:</label>
+											    <div class="col-sm-4">
+													<select  class="col-md-12 full-width-fix form-control" id="userCarAfterTakePicture" name="userCarAfterTakePicture" required="required" data-msg-required="请选择用车后拍照">
+														<option value="">请选择</option>
+														<option value="1">固定角度模式</option>
+														<option value="2">验车单模式</option>
+														<option value="0">关闭</option>
+														</select>
+												</div>
+												<label class="col-sm-2 control-label"><font color="red">*</font>恶劣天气跳过还车拍照:</label>
+											    <div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="badWeatherTakePicture" name="badWeatherTakePicture" required="required" data-msg-required="请选择恶劣天气跳过还车拍照">
+														<option value="">请选择</option>
+														<option value="1">开启</option>
+														<option value="0">关闭</option>
+														</select>
+												</div>
+											</div>
+											 <div class="form-group">
+											    <label class="col-sm-2 control-label"><font color="red">*</font>恶劣天气跳过用车识别:</label>
+											    <div class="col-sm-4">
+													<select  class="col-md-12 full-width-fix form-control" id="badWeatherFaceRecognition" name="badWeatherFaceRecognition" required="required" data-msg-required="请选择恶劣天气人脸识别">
+														<option value="">请选择</option>
+														<option value="1" >开启</option>
+														<option value="0" >关闭</option>
+														</select>
+												</div>
+												<label class="col-sm-2 control-label"><font color="red">*</font>手机定位辅助还车:</label>
+											    <div class="col-sm-4">
+													<select  class="col-md-12 full-width-fix form-control" id="assitedPositionSwitch" name="assitedPositionSwitch" required="required" data-msg-required="请选择手机定位辅助还车">
+														<option value="">请选择</option>
+														<option value="1" >开启</option>
+														<option value="0" >关闭</option>
+														</select>
+												</div>
+											 </div>
+											 
+											 <div class="form-group">
+											    <label class="col-sm-2 control-label"><font color="red">*</font>限行开关:</label>
+											    <div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="trafficLimitSwitch" name="trafficLimitSwitch" required="required" data-msg-required="请选择限行开关">
+														<option value="">请选择</option>
+														<option value="1">开启</option>
+														<option value="0">关闭</option>
+														</select>
+												</div>
+											    <label class="col-sm-2 control-label"><font color="red">*</font>网点超停车辆开关:</label>
+											    <div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="superStop" name="superStop" required="required" data-msg-required="请选择网点超停车辆开关">
+														<option value="">请选择</option>
+														<option value="1">开启</option>
+														<option value="0">关闭</option>
+														</select>
+												</div>
+											 </div>
+											<div class="form-group">
+											    <label class="col-sm-2 control-label"><font color="red">*</font>分时险开关:</label>
+											    <div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="compensateSwitch" name="compensateSwitch" required="required" data-msg-required="请选择分时险开关">
+														<option value="">请选择</option>
+														<option value="0">基础保障</option>
+														<option value="1">基础保障+升级保障</option>
+														<option value="2">升级保障</option>
+														</select>
+												</div>
+												<label class="col-sm-2 control-label"><font color="red">*</font>业务类型:</label>
+											    <div class="col-sm-4">
+													<select class="col-md-12 full-width-fix form-control" id="businessLineCode" name="businessLineCode" required="required" data-msg-required="请选择业务线开关">
+														<option value="">请选择</option>
+														<option value="0">分时</option>
+														<option value="1">整租</option>
+														<option value="3">C2C共享</option>
+														<option value="2">客货两用</option>
+														<option value="4">日租</option>
+														</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<p class="btn-toolbar" align="center">
+									<button id="submit" type="submit" class="btn btn-primary" onclick="validateData('addForm')" ><i class="fa fa-check-square-o"></i> 保存</button>
+									<button type="button" class="btn btn-primary" onclick="jumpUrl('/city/getList')"><i class="fa fa-check-square-o"></i> 返回</button>
+								</p>
+								
+							</div>
+							</form>
+							
+							<!-- /BOX -->
+							<!-- dialog begin -->
+							<div id="cityDiv" class="modal fade" role="dialog" aria-hidden="true" align="center" style="top: 5%;" >
+								<div class="modal-dialog">
+									<div class="box border green">
+										<div class="box-body">
+											<form id="remarkForm" action="" method="post">
+												<div class="row">
+													<div class="col-md-12">
+														<div class="well form-horizontal">
+															<div class="form-group" style="width:520px; border: 1px solid #E5E5E5; height: 300px; background-color: #fff; overflow-x: auto;">
+																<ul id="citytTree" class="ztree"></ul>
+															</div>
+															<div class="form-group">
+																<div class="col-sm-6 col-sm-offset-4">
+																	<a class="btn btn-primary" href="#" onclick="getTreeVal()">确定</a>
+																	<a class="btn btn-info" href="#" data-dismiss="modal">取消</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>							
+							<!-- dialog end -->
+							<!-- dialog1 begin -->
+							<div id="cityDiv1" class="modal fade" role="dialog" aria-hidden="true" align="center" style="top: 5%;" >
+								<div class="modal-dialog">
+									<div class="box border green">
+										<div class="box-body">
+											<form id="remarkForm1" action="" method="post">
+												<div class="row">
+													<div class="col-md-12">
+														<div class="well form-horizontal">
+															<div class="form-group" style="width:520px; border: 1px solid #E5E5E5; height: 300px; background-color: #fff; overflow-x: auto;">
+																<ul id="citytTree1" class="ztree"></ul>
+															</div>
+															<div class="form-group">
+																<div class="col-sm-6 col-sm-offset-4">
+																	<a class="btn btn-primary" href="#" onclick="getTreeVal1()">确定</a>
+																	<a class="btn btn-info" href="#" data-dismiss="modal">取消</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>							
+							<!-- dialog1 end -->
+						</div>
+					</div>
+				</div>
+				<!-- /DATA TABLES -->
+			</div>
+			<!-- /CONTENT-->
+		</div>
+	</section>
+	<!--/PAGE -->
+<script type="text/javascript">
+	$(function(){
+		$("#status").val("");
+		$("#parkingReturnType").val("");
+		$("#carPictures").val("");
+		$("#autoSettleOrderSwitch").val("");
+		$("#virtualSwitch").val("");
+		$("#appointmentSwitch").val("");
+		$("#useCarRecognitionSwitch").val("");
+		$("#elseReturnSwitch").val("");
+		$("#barrierSwitch").val("");
+		$("#zhimaCredit").val("");
+		$("#pushFeeType").val("");
+		$("#userCarBeforeTakePicture").val("");
+		$("#userCarAfterTakePicture").val("");
+		$("#badWeatherTakePicture").val("");
+		$("#badWeatherFaceRecognition").val("");
+		$("#assitedPositionSwitch").val("");
+		$("#trafficLimitSwitch").val("");
+		$("#superStop").val("");
+		$("#compensateSwitch").val("");
+		$("#businessLineCode").val("");
+
+		addEntranceMarker();
+	});
+	//地图相关开始
+	  var map = new AMap.Map('container', {
+        resizeEnable: true,
+        zoom: 8
+     });
+	  var marker = new AMap.Marker({
+	        icon: new AMap.Icon({
+	            size: new AMap.Size(40, 50), //图标大小
+	            image: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png"
+	        })
+	    });
+	  
+	  //为地图注册click事件获取鼠标点击出的经纬度坐标
+	    map.on('click', function (e) {
+	        centerOnClick(e);
+	    });
+
+	    function centerOnClick(e) {
+	        $("#lon").val(e.lnglat.getLng());
+	        $("#lat").val(e.lnglat.getLat());
+	        lnglat = e.lnglat;
+	        marker.setMap(map);
+	        marker.setPosition([lnglat.getLng(), lnglat.getLat()]);
+	    }
+	//地图相关结束
+	
+	function addEntranceMarker() {
+        var entranceLongitude = '';
+        var entranceLatitude = '';
+        if (!entranceLongitude || !entranceLatitude) {
+            return;
+        }
+        
+
+        marker.setMap(map);
+        // 自定义点标记内容
+        var markerContent = document.createElement("div");
+
+        // 点标记中的图标
+        var markerImg = document.createElement("img");
+        markerImg.className = "markerlnglat";
+        markerImg.src = "http://webapi.amap.com/theme/v1.3/markers/n/mark_r.png";
+        markerContent.appendChild(markerImg);
+
+        // 点标记中的文本
+        var markerSpan = document.createElement("span");
+        markerSpan.className = 'markerEntrance';
+        markerSpan.innerHTML = "中心点";
+        markerContent.appendChild(markerSpan);
+
+        marker.setContent(markerContent); //更新点标记内容
+        marker.setPosition([entranceLongitude, entranceLatitude]); //更新点标记位置
+    }
+	
+	///异步加载cityTree开始 -----------------------------
+	function selectCodes(){
+		var checkValue = $("#codes").val();
+		var lat = $("#lat").val();
+		if(isEmpty(lat)) {
+			selfAlert("请先选择中心坐标点！");
+			return false;
+		}
+		$("#cityDiv1").modal("show");
+		bindAsyncSelectTree("#citytTree1", "/city/getAreaJson?checkValue="+checkValue, "/city/getSubAreaJson?checkValue="+checkValue);
+	}
+	function bindAsyncSelectTree(target, url, subUrl) {
+		var setting = {
+			check: {
+				enable: true,
+				chkStyle:"checkbox",
+				chkboxType : {
+	                "Y" : "s",
+	                "N" : "ps"
+	            }
+			},
+			async:{
+	            enable:true,//是否为异步加载
+	            autoParam:["id"],//异步加载 自动提交
+	            url: subUrl
+	        },
+	        callback: {
+	            onCheck: zTreeOnCheck,
+	            onClick: zTreeOnClick,
+	            beforeExpand: beforeExpand
+	        },
+	        data: {
+	            simpleData: {
+	                enable : true,//是否之用简单数据
+	            }
+	        }
+	    };
+	    $.post(url, function (datas) {
+	    	ajaxDataFilter(datas);
+	        $.fn.zTree.init($(target), setting, datas);
+	    });
+	}
+	function zTreeOnCheck(event, treeId, treeNode) {
+		//设置父节点
+		$("#parentCode").val(treeNode.id);
+		//alert($("#parentCode").val());
+		$("#parentName").val(treeNode.name);
+	}
+	function beforeExpand(){
+		
+	}
+
+	function SelectTree(url, target) {
+		var setting = {
+			check: {
+				enable: true
+			},
+			async:{
+				enable: true
+			},
+			callback: {
+				onCheck: zTreeOnClick
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+		};
+		
+		
+		$.post(url, function (datas) {
+			ajaxDataFilter(datas);
+			$.fn.zTree.init($(target), setting, datas);
+		});
+	}
+
+	function ajaxDataFilter(responseData) {
+		console.log(responseData.length);
+		if (responseData.length>0) {
+			var id;
+			for(var i =0; i < responseData.length; i++) {
+				id = responseData[i].id;
+				for(var j =0; j < responseData.length; j++) {
+					if(id==responseData[j].pId){
+						responseData[i].nocheck = true;
+					}
+				}
+			}
+		}
+		return responseData;
+	}
+
+	function zTreeOnClick(event, treeId, treeNode) {
+	}
+	//获取树选中值
+	function getTreeVal(){
+		getCheckedNodeIds("citytTree", "areaCode");
+		$("#cityDiv").modal('hide'); 
+	}
+	function getTreeVal1(){
+		getCheckedNodeIds("citytTree1", "codes", "areaNames");
+		$("#cityDiv1").modal('hide'); 
+		drawBounds();
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/**如果选择fun开挺开启， 设置异地还车关闭，不可编辑*/
+	function funType() {
+		var virtualSwitch = $("#virtualSwitch").val();
+		if(virtualSwitch=="1") {
+			$("#elseReturnSwitch").val("0");
+			$("#elseReturnSwitch").attr("disabled",true);
+			elseReturnType();
+		} else {
+			$("#elseReturnSwitch").attr("disabled",false);
+			elseReturnType();
+		}
+	}
+	/**异地还车开启|设置费用*/
+	function elseReturnType() {
+		var elseReturnSwitch = $("#elseReturnSwitch").val();
+		if(elseReturnSwitch == "1") {
+			$("#elseReturnAmount").attr("disabled",false);
+		} else {
+			$("#elseReturnAmount").val("");
+			$("#elseReturnAmount").attr("disabled",true);
+		}
+	}
+	function cascade(){
+		var appointmentSwitch = $("#appointmentSwitch").val();
+		if(appointmentSwitch==1){
+			$("#appointmentTime").attr("disabled",false);
+		}else{
+			$("#appointmentTime").val("");//只读
+			$("#appointmentTime").attr("disabled",true);//只读
+		} 
+	}
+	function getOrderSwitch(){
+		var autoSettleOrderSwitch = $("#autoSettleOrderSwitch").val();
+		if(autoSettleOrderSwitch==1){
+			$("#autoSettleOrderTime").attr("disabled",false);
+		}else{
+			$("#autoSettleOrderTime").val("");//只读
+			$("#autoSettleOrderTime").attr("disabled",true);//只读
+		} 
+	}
+	function formOnSubmit() {
+		submitSummaryFormByPost("addForm", "/city/getList");
+	}
+	 //arecode添加颜色
+    var district = null;
+   var polygons=[];
+ // var polygons="";
+   function drawBounds() {
+       //加载行政区划插件
+       if(!district){
+           //实例化DistrictSearch
+           var opts = {
+               subdistrict: 0,   //获取边界不需要返回下级行政区
+               extensions: 'all',  //返回行政区边界坐标组等具体信息
+               level: 'district'  //查询行政级别为 市
+           };
+           district = new AMap.DistrictSearch(opts);
+       }
+       //行政区查询
+       district.setLevel("district");
+       
+       var areaName = $("#areaNames").val(); 
+       var strs= new Array(); //定义一数组 
+       strs=areaName.split(","); //字符分割 
+       map.remove(polygons);
+   	   map.clearMap();
+       for (i=0;i<strs.length ;i++ ) {
+       	 district.search(strs[i], function(status, result) {
+	 	            polygons = [];
+	 	            var bounds = result.districtList[0].boundaries;
+	 	            if (bounds) {
+	 	                for (var i = 0, l = bounds.length; i < l; i++) {
+	 	                    //生成行政区划polygon
+	 	                    var polygon = new AMap.Polygon({
+	 	                        strokeWeight: 1,
+	 	                        path: bounds[i],
+	 	                        fillOpacity: 0.4,
+	 	                        fillColor: '#80d8ff',
+	 	                        strokeColor: '#0091ea'
+	 	                    });
+	 	                    polygons.push(polygon);
+	 	                }
+	 	            }
+	 	            map.add(polygons);
+	 	            map.setFitView(polygons);//视口自适应
+	        });
+	    }
+       	
+   }
+	</script>
+</body>
+</html>
