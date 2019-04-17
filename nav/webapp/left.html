@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <title>GoFun运营管理系统</title>
     <link rel="stylesheet" href="./css/left.css">
+    <style>
+        .temporary{
+            width: 100%;
+            height: 100%;
+            background: url();
+        }
+        .metismenu{
+            display: none;
+        }
+    </style>
 </head>
 
 <body class="left_body">
@@ -12,215 +22,218 @@
     <div class="nav_pos_right"></div>
     <div class="close_model_left"></div>
     <div id="tree" class="nav_cus_top nav_customized new_customized">
-            <ul class="metismenu side-nav in">
+        <div class="temporary">
+            
+        </div>
+        <ul class="metismenu side-nav in">
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="dripicons-copy"></i>
+                    <span> Pages </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level collapse" aria-expanded="false">
+                    <li>
+                        <a href="">Starter Page</a>
+                    </li>
+                    <li>
+                        <a href="">Maintenance</a>
+                    </li>
                     <li class="side-nav-item">
-                        <a href="javascript: void(0);" class="side-nav-link">
-                            <i class="dripicons-copy"></i>
-                            <span> Pages </span>
+                        <a href="javascript: void(0);" aria-expanded="false">Authentication
                             <span class="menu-arrow"></span>
                         </a>
-                        <ul class="side-nav-second-level collapse" aria-expanded="false">
+                        <ul class="side-nav-third-level collapse" aria-expanded="false">
                             <li>
-                                <a href="">Starter Page</a>
+                                <a href="">Login</a>
                             </li>
                             <li>
-                                <a href="">Maintenance</a>
+                                <a href="">Login 2</a>
                             </li>
-                            <li class="side-nav-item">
-                                <a href="javascript: void(0);" aria-expanded="false">Authentication
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="side-nav-third-level collapse" aria-expanded="false">
-                                    <li>
-                                        <a href="">Login</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Login 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Register</a>
-                                    </li>
+                            <li>
+                                <a href="">Register</a>
+                            </li>
 
-                                    <li>
-                                        <a href="">Confirm Mail 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="side-nav-item">
-                                <a href="javascript: void(0);" aria-expanded="false">Error
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="side-nav-third-level collapse" aria-expanded="false">
-                                    <li>
-                                        <a href="">Error 404</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Error 404-alt</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Error 500</a>
-                                    </li>
-                                </ul>
+                            <li>
+                                <a href="">Confirm Mail 2</a>
                             </li>
                         </ul>
                     </li>
-
                     <li class="side-nav-item">
-                        <a href="" class="side-nav-link">
-                            <i class="dripicons-heart"></i>
-                            <span class="badge badge-light float-right">New</span>
-                            <span> Widgets </span>
+                        <a href="javascript: void(0);" aria-expanded="false">Error
+                            <span class="menu-arrow"></span>
                         </a>
+                        <ul class="side-nav-third-level collapse" aria-expanded="false">
+                            <li>
+                                <a href="">Error 404</a>
+                            </li>
+                            <li>
+                                <a href="">Error 404-alt</a>
+                            </li>
+                            <li>
+                                <a href="">Error 500</a>
+                            </li>
+                        </ul>
                     </li>
-
                 </ul>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="" class="side-nav-link">
+                    <i class="dripicons-heart"></i>
+                    <span class="badge badge-light float-right">New</span>
+                    <span> Widgets </span>
+                </a>
+            </li>
+
+        </ul>
     </div>
-<script src="./js/jquery.min.js"></script>
-<script src="./js/left.js"></script>
-<script type="text/javascript">
-    $(function() {
-        addMenu();
-        //qiMooor();
-    });
-
-    function qiMooor() {
-        $.ajax({
-            url: '/qiMoor',
-            type: 'post',
-            async: false,
-            dataType: "json",
-            success: function(data) {
-                console.log(data.loginName)
-                console.log(data.password)
-                console.log(data.loginType)
-            }
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/left.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            addMenu();
+            //qiMooor();
         });
-    }
 
-    function addMenu() {
-        $.ajax({
-            url: '/findMenu',
-            type: 'post',
-            async: false,
-            dataType: "json",
-            success: function(data) {
-                if(data == 501) {
-                    top.window.location.href = "/login?flag=false";
+        function qiMooor() {
+            $.ajax({
+                url: '/qiMoor',
+                type: 'post',
+                async: false,
+                dataType: "json",
+                success: function (data) {
+                    console.log(data.loginName)
+                    console.log(data.password)
+                    console.log(data.loginType)
                 }
-                pushJsonData(data);
-            }
+            });
+        }
+
+        function addMenu() {
+            // $.ajax({
+            //     url: '/findMenu',
+            //     type: 'post',
+            //     async: false,
+            //     dataType: "json",
+            //     success: function (data) {
+            //         if (data == 501) {
+            //             top.window.location.href = "/login?flag=false";
+            //         }
+            //         pushJsonData(data);
+            //     }
+            // });
+        }
+
+        function pushJsonData(dataJson) {
+            // console.log(dataJson);
+            Tree("#tree", dataJson);
+        }
+
+        /*顶部导航拖动*/
+        $(function () {
+            var _move = false; //移动标记
+            var _x, _y; //鼠标离控件左上角的相对位置
+            $(".drag").click(function () {
+                //alert("click");//点击（松开后触发）
+            }).mousedown(function (e) {
+                _move = true;
+                _x = e.pageX - parseInt($(".drag").css("left"));
+                _y = e.pageY - parseInt($(".drag").css("top"));
+                $(".drag").fadeTo(20); //点击后开始拖动并透明显示
+            });
+            $(document).mousemove(function (e) {
+                if (_move) {
+                    var x = e.pageX - _x; //移动时根据鼠标位置计算控件左上角的绝对位置
+                    var y = e.pageY - _y;
+                    //$(".drag").css({top:y,left:x});//控件新位置
+                    $(".drag").css({
+                        left: x
+                    }); //控件新位置
+                }
+            }).mouseup(function () {
+                _move = false;
+                $(".drag").fadeTo("fast"); //松开鼠标后停止移动并恢复成不透明
+            });
         });
-    }
 
-    function pushJsonData(dataJson) {
-        // console.log(dataJson);
-        Tree("#tree", dataJson);
-    }
+        /*顶部导航溢出自动居中*/
+        $(function () {
+            var totalWidth = 0;
+            var blockWidth = $('.nav_cus_tree').width();
 
-    /*顶部导航拖动*/
-    $(function() {
-        var _move = false; //移动标记
-        var _x, _y; //鼠标离控件左上角的相对位置
-        $(".drag").click(function() {
-            //alert("click");//点击（松开后触发）
-        }).mousedown(function(e) {
-            _move = true;
-            _x = e.pageX - parseInt($(".drag").css("left"));
-            _y = e.pageY - parseInt($(".drag").css("top"));
-            $(".drag").fadeTo(20); //点击后开始拖动并透明显示
-        });
-        $(document).mousemove(function(e) {
-            if(_move) {
-                var x = e.pageX - _x; //移动时根据鼠标位置计算控件左上角的绝对位置
-                var y = e.pageY - _y;
-                //$(".drag").css({top:y,left:x});//控件新位置
-                $(".drag").css({
-                    left: x
-                }); //控件新位置
-            }
-        }).mouseup(function() {
-            _move = false;
-            $(".drag").fadeTo("fast"); //松开鼠标后停止移动并恢复成不透明
-        });
-    });
+            $('.nav_cus_tree .wrapper .tree-item').each(function () {
+                totalWidth += $(this).outerWidth(true);
+            });
 
-    /*顶部导航溢出自动居中*/
-    $(function() {
-        var totalWidth = 0;
-        var blockWidth = $('.nav_cus_tree').width();
+            $('.nav_cus_tree .wrapper').width(totalWidth);
 
-        $('.nav_cus_tree .wrapper .tree-item').each(function() {
-            totalWidth += $(this).outerWidth(true);
-        });
+            var origin = $('.nav_cus_tree .wrapper .tree-item:first-child').position();
 
-        $('.nav_cus_tree .wrapper').width(totalWidth);
+            $('.nav_cus_tree .wrapper .tree-item').click(function () {
+                var position = $(this).position();
+                var outerWidth = $(this).outerWidth(true);
+                var offsetX = position.left - origin.left; // 当前点击元素的相对横向偏移
+                var centerX = offsetX + outerWidth / 2; // 当前点击元素中点相对横坐标
 
-        var origin = $('.nav_cus_tree .wrapper .tree-item:first-child').position();
-
-        $('.nav_cus_tree .wrapper .tree-item').click(function() {
-            var position = $(this).position();
-            var outerWidth = $(this).outerWidth(true);
-            var offsetX = position.left - origin.left; // 当前点击元素的相对横向偏移
-            var centerX = offsetX + outerWidth / 2; // 当前点击元素中点相对横坐标
-
-            if(totalWidth <= blockWidth) {
-                // 可见区域比ul区域大
-                // 不进行任何操作
-            } else {
-                if(centerX < blockWidth / 2) {
-                    // 元素中点左侧距离小于可见区域的一半
-                    // 就不能将当前元素滑到中间，否则左侧会空出来
-                    // 只能使left为0
-                    $('.nav_cus_tree .wrapper').animate({
-                        left: 0
-                    }, 1000);
-                } else if(centerX + blockWidth / 2 > totalWidth) {
-                    // 元素中点坐标加上可见区域的一半大于ul总宽度
-                    // 就不能将当前元素滑到中间，否则右侧会空出来
-                    // 只能使left为blockWidth - totalWidth
-                    $('.nav_cus_tree .wrapper').animate({
-                        left: blockWidth - totalWidth
-                    }, 1000);
+                if (totalWidth <= blockWidth) {
+                    // 可见区域比ul区域大
+                    // 不进行任何操作
                 } else {
-                    // 正常居中
-                    $('.nav_cus_tree .wrapper').animate({
-                        left: blockWidth / 2 - centerX
-                    }, 1000);
+                    if (centerX < blockWidth / 2) {
+                        // 元素中点左侧距离小于可见区域的一半
+                        // 就不能将当前元素滑到中间，否则左侧会空出来
+                        // 只能使left为0
+                        $('.nav_cus_tree .wrapper').animate({
+                            left: 0
+                        }, 1000);
+                    } else if (centerX + blockWidth / 2 > totalWidth) {
+                        // 元素中点坐标加上可见区域的一半大于ul总宽度
+                        // 就不能将当前元素滑到中间，否则右侧会空出来
+                        // 只能使left为blockWidth - totalWidth
+                        $('.nav_cus_tree .wrapper').animate({
+                            left: blockWidth - totalWidth
+                        }, 1000);
+                    } else {
+                        // 正常居中
+                        $('.nav_cus_tree .wrapper').animate({
+                            left: blockWidth / 2 - centerX
+                        }, 1000);
+                    }
                 }
-            }
-        });
-    })
+            });
+        })
 
-    //导航调整
-    $(function() {
+        //导航调整
+        $(function () {
 
-        //更改ifream 高度
-        $("#tree .tree-item h3").on("click",function() {
+            //更改ifream 高度
+            $("#tree .tree-item h3").on("click", function () {
                 $(this).parent().siblings().find(".tree-two-box").stop().slideUp();
                 //$(".tree-item h3").removeClass(".tree-cus-h3");
                 $(".nav_pos_iframe", parent.document).addClass("nav_pos_iframe_height");
-        });
+            });
 
-        //移出关闭导航
-        $("body #tree").on("mouseleave", ".tree-item .tree-two-box", function() {
-            if($("body #tree").hasClass("nav_cus_tree")) {
-                $(".tree-item .tree-two-box").stop().slideUp();
-                $(".nav_pos_iframe", parent.document).removeClass("nav_pos_iframe_height");
-            }
-        });
+            //移出关闭导航
+            $("body #tree").on("mouseleave", ".tree-item .tree-two-box", function () {
+                if ($("body #tree").hasClass("nav_cus_tree")) {
+                    $(".tree-item .tree-two-box").stop().slideUp();
+                    $(".nav_pos_iframe", parent.document).removeClass("nav_pos_iframe_height");
+                }
+            });
 
-        //点击没有子集关闭
-        //var lastc = $(".tree-last-box").children();
-        $("#tree .tree-single").on("click", function() {
-            if($("body #tree").hasClass("nav_cus_tree")) {
-               $(".tree-two-box").slideUp();
-                $(".nav_pos_iframe",parent.document).removeClass("nav_pos_iframe_height");
-            }
-        });
+            //点击没有子集关闭
+            //var lastc = $(".tree-last-box").children();
+            $("#tree .tree-single").on("click", function () {
+                if ($("body #tree").hasClass("nav_cus_tree")) {
+                    $(".tree-two-box").slideUp();
+                    $(".nav_pos_iframe", parent.document).removeClass("nav_pos_iframe_height");
+                }
+            });
 
-    });
-</script>
-<script src="./js/left-ready.js"></script>
+        });
+    </script>
+    <script src="./js/left-ready.js"></script>
 </body>
 
 </html>

@@ -52,25 +52,25 @@ $(function() {
     } else {
         $("#menu-btn").hide();
     }
-    $.ajax({
-        url: '/queryAdminUser',
-        type: 'post',
-        success: function(data) {
-            $("#topLoginName").html(data.name);
-            $("#userName").val(data.name);
-            $("#loginName").val(data.loginName);
-            $("#userSim").val(data.sim);
-            $("#userTypeDesc").val(data.userTypeDesc);
-            $("#userType").val(data.userType);
-            $("#cityName").val(data.cityName);
-            $("#roleName").val(data.roleName);
-            $("#userEmail").val(data.email);
-            if (data.headImg != "") {
-            	$("#index_headImg").prop("src",data.headImg);
-            	$("#imagesUrl").prop("src",data.headImg);
-            }
-        }
-    });
+    // $.ajax({
+    //     url: '/queryAdminUser',
+    //     type: 'post',
+    //     success: function(data) {
+    //         $("#topLoginName").html(data.name);
+    //         $("#userName").val(data.name);
+    //         $("#loginName").val(data.loginName);
+    //         $("#userSim").val(data.sim);
+    //         $("#userTypeDesc").val(data.userTypeDesc);
+    //         $("#userType").val(data.userType);
+    //         $("#cityName").val(data.cityName);
+    //         $("#roleName").val(data.roleName);
+    //         $("#userEmail").val(data.email);
+    //         if (data.headImg != "") {
+    //         	$("#index_headImg").prop("src",data.headImg);
+    //         	$("#imagesUrl").prop("src",data.headImg);
+    //         }
+    //     }
+    // });
     
     getNewVersion();
     
@@ -78,13 +78,13 @@ $(function() {
 
 //获取最大版本号
 function getNewVersion(){
-	$.ajax({
-        url: '/osVersion/getMaxPublicOsVersion?kind=1',
-        type: 'post',
-        success: function(data) {
-            $(".sys_version").attr('title',data.newVersion);
-        }
-    });
+	// $.ajax({
+    //     url: '/osVersion/getMaxPublicOsVersion?kind=1',
+    //     type: 'post',
+    //     success: function(data) {
+    //         $(".sys_version").attr('title',data.newVersion);
+    //     }
+    // });
 }
 
 //自有  不需要显示外包商
@@ -232,26 +232,26 @@ function showUpdatePwd() {
 }
 
 // 个人信息
-function showUserInfo() {
-	$.ajax({
-        url: '/queryAdminUser',
-        type: 'post',
-        success: function(data) {
-            $("#userName").val(data.name);
-            $("#loginName").val(data.loginName);
-            $("#userSim").val(data.sim);
-            $("#userTypeDesc").val(data.userTypeDesc);
-            $("#cityName").val(data.cityName);
-            $("#roleName").val(data.roleName);
-            $("#userEmail").val(data.email);
-            $("#outsourcerName").val(data.outsourcerName);
-            $("#index_headImg").prop("src",data.headImg);
-        }
-    });
-	$("#modifyUserInfo").show();
-	$("#modifySuggestInfo").hide();
-	$("#modifyPwd").hide();
-}
+// function showUserInfo() {
+// 	$.ajax({
+//         url: '/queryAdminUser',
+//         type: 'post',
+//         success: function(data) {
+//             $("#userName").val(data.name);
+//             $("#loginName").val(data.loginName);
+//             $("#userSim").val(data.sim);
+//             $("#userTypeDesc").val(data.userTypeDesc);
+//             $("#cityName").val(data.cityName);
+//             $("#roleName").val(data.roleName);
+//             $("#userEmail").val(data.email);
+//             $("#outsourcerName").val(data.outsourcerName);
+//             $("#index_headImg").prop("src",data.headImg);
+//         }
+//     });
+// 	$("#modifyUserInfo").show();
+// 	$("#modifySuggestInfo").hide();
+// 	$("#modifyPwd").hide();
+// }
 
 // 建议反馈
 function showSuggest() {
@@ -371,182 +371,182 @@ function logout() {
     top.window.location.href = "/userLogout";
 }
 
-//存储导航和背景设置 -
-var storage = window.localStorage;
-$(window).load(function() {
-    if(storage.showbtn == "show") { //横向
-        $(".td-hidden").addClass("nav_pos_iframe");
-        $(".showbtn").addClass("showbtn_top showbtn_i");
-        $(".left_web").contents().find("#tree").removeClass("nav_customized").addClass("nav_cus_tree"); // console.log("show");
-        //导航居左居右 显示隐藏
-        var bwith = $(".left_web").contents().find(".left_body").width(); //导航区域显示宽度
-        var navwidth = $(".left_web").contents().find(".tree-box").width(); //导航条实际宽度
-        if(navwidth > bwith) {
-            $(".left_web_nav_l").show();
-            // $(".left_web").contents().find(".nav_pos_left").show();
-            $(".left_web").contents().find(".tree-box").removeClass("tree_box_right");
-        } else {
-            $(".left_web_nav_l,.left_web_nav_r"),hide();
-            // $(".left_web").contents().find(".nav_pos_left,.nav_pos_right").hide();
-        }
-    } else {  //纵向
+// //存储导航和背景设置 -
+// var storage = window.localStorage;
+// $(window).load(function() {
+//     if(storage.showbtn == "show") { //横向
+//         $(".td-hidden").addClass("nav_pos_iframe");
+//         $(".showbtn").addClass("showbtn_top showbtn_i");
+//         $(".left_web").contents().find("#tree").removeClass("nav_customized").addClass("nav_cus_tree"); // console.log("show");
+//         //导航居左居右 显示隐藏
+//         var bwith = $(".left_web").contents().find(".left_body").width(); //导航区域显示宽度
+//         var navwidth = $(".left_web").contents().find(".tree-box").width(); //导航条实际宽度
+//         if(navwidth > bwith) {
+//             $(".left_web_nav_l").show();
+//             // $(".left_web").contents().find(".nav_pos_left").show();
+//             $(".left_web").contents().find(".tree-box").removeClass("tree_box_right");
+//         } else {
+//             $(".left_web_nav_l,.left_web_nav_r"),hide();
+//             // $(".left_web").contents().find(".nav_pos_left,.nav_pos_right").hide();
+//         }
+//     } else {  //纵向
 
-        $(".td-hidden").removeClass("nav_pos_iframe");
-        $(".showbtn").removeClass("showbtn_top showbtn_i");
-        $(".left_web").contents().find("#tree").addClass("nav_customized").removeClass("nav_cus_tree"); //console.log("hide");
-    }
+//         $(".td-hidden").removeClass("nav_pos_iframe");
+//         $(".showbtn").removeClass("showbtn_top showbtn_i");
+//         $(".left_web").contents().find("#tree").addClass("nav_customized").removeClass("nav_cus_tree"); //console.log("hide");
+//     }
 
-    //导航左右点击
-    var nav_box = $(".left_web").contents().find(".nav_cus_tree .tree-box");
-    $(".left_web_nav_r").on("click",function() { //居右
-        $(".left_web").contents().find(".nav_cus_tree .tree-box").addClass("tree_box_left");
-        $(".left_web").contents().find(".nav_cus_tree .tree-box").removeClass("tree_box_right");
-        $(".left_web").contents().find(".left_web_nav_r").removeClass("left_web_nav_r");
-        $(".left_web_nav_l").show();
-        $(".left_web_nav_r").hide();
-    })
+//     //导航左右点击
+//     var nav_box = $(".left_web").contents().find(".nav_cus_tree .tree-box");
+//     $(".left_web_nav_r").on("click",function() { //居右
+//         $(".left_web").contents().find(".nav_cus_tree .tree-box").addClass("tree_box_left");
+//         $(".left_web").contents().find(".nav_cus_tree .tree-box").removeClass("tree_box_right");
+//         $(".left_web").contents().find(".left_web_nav_r").removeClass("left_web_nav_r");
+//         $(".left_web_nav_l").show();
+//         $(".left_web_nav_r").hide();
+//     })
 
-    $(".left_web_nav_l").on("click",function() {  //居左
-        $(".left_web").contents().find(".nav_cus_tree .tree-box").removeClass("tree_box_left");
-        $(".left_web").contents().find(".nav_cus_tree .tree-box").addClass("tree_box_right");
-        $(".left_web_nav_r").show();
-        $(".left_web_nav_l").hide();
-    })
+//     $(".left_web_nav_l").on("click",function() {  //居左
+//         $(".left_web").contents().find(".nav_cus_tree .tree-box").removeClass("tree_box_left");
+//         $(".left_web").contents().find(".nav_cus_tree .tree-box").addClass("tree_box_right");
+//         $(".left_web_nav_r").show();
+//         $(".left_web_nav_l").hide();
+//     })
 
-    //存储的背景图
-    if(storage.skin_bg == "bg.jpg") {
+//     //存储的背景图
+//     if(storage.skin_bg == "bg.jpg") {
 
-    } else {
-        if(storage.skin_bg == undefined){  //默认加载
-            $(".old_sty").removeClass("bg_default").attr("background", "./images/bg.jpg");
-        }else {		//储存的背景
-            $(".old_sty").removeClass("bg_default").attr("background", "./images/" + storage.skin_bg + "");
-        }
-    }
+//     } else {
+//         if(storage.skin_bg == undefined){  //默认加载
+//             $(".old_sty").removeClass("bg_default").attr("background", "./images/bg.jpg");
+//         }else {		//储存的背景
+//             $(".old_sty").removeClass("bg_default").attr("background", "./images/" + storage.skin_bg + "");
+//         }
+//     }
 
-    if( storage.skin_bg == "bg_old"){	//旧主题
-        $(".old_sty").removeClass("old_style");
-        $(".home-header").addClass("home-header_old");
-        $(".showbtn").addClass("showbtn_old");
-        $(".left_web").load(function() {
-            $(".left_web").contents().find("#tree").removeClass("nav_customized"); //console.log("hide");
-        });
-    }
-});
+//     if( storage.skin_bg == "bg_old"){	//旧主题
+//         $(".old_sty").removeClass("old_style");
+//         $(".home-header").addClass("home-header_old");
+//         $(".showbtn").addClass("showbtn_old");
+//         $(".left_web").load(function() {
+//             $(".left_web").contents().find("#tree").removeClass("nav_customized"); //console.log("hide");
+//         });
+//     }
+// });
 
-/*切换上部导航*/
-$(".showbtn").click(function() {
-    //切换到横导航
-    $(".td-hidden").toggleClass("nav_pos_iframe");
-    $(".showbtn em").toggleClass("to-right");
-    $(".showbtn").toggleClass("showbtn_top showbtn_i");
-    //$(".td-hidden .left_web").toggleClass("nav_pos_iframe");
-    //$("#iframe的ID").contents().find("#iframe中的控件ID").click();
-    $(".left_web").contents().find("#tree").toggleClass("nav_cus_tree nav_customized");
-    $(".nav_pos_iframe").removeClass("nav_pos_iframe_height"); //删除高度
+// /*切换上部导航*/
+// $(".showbtn").click(function() {
+//     //切换到横导航
+//     $(".td-hidden").toggleClass("nav_pos_iframe");
+//     $(".showbtn em").toggleClass("to-right");
+//     $(".showbtn").toggleClass("showbtn_top showbtn_i");
+//     //$(".td-hidden .left_web").toggleClass("nav_pos_iframe");
+//     //$("#iframe的ID").contents().find("#iframe中的控件ID").click();
+//     $(".left_web").contents().find("#tree").toggleClass("nav_cus_tree nav_customized");
+//     $(".nav_pos_iframe").removeClass("nav_pos_iframe_height"); //删除高度
 
-    if($(".nav_cus_top ").hasClass("nav_customized")) {
-        //$(".home-header-usr").removeClass("setting_index_hide");
-    } else {
-        //$(".home-header-usr").addClass("setting_index_hide");
-        $(".td-hidden").removeClass("nav_pos_iframe_pad");
-    }
+//     if($(".nav_cus_top ").hasClass("nav_customized")) {
+//         //$(".home-header-usr").removeClass("setting_index_hide");
+//     } else {
+//         //$(".home-header-usr").addClass("setting_index_hide");
+//         $(".td-hidden").removeClass("nav_pos_iframe_pad");
+//     }
 
-    //loca本地存储切换状态
-    if($(".showbtn").hasClass("showbtn_top")) {
-        storage.setItem("showbtn", "show");
-    } else {
-        storage.setItem("showbtn", "hide");
-    }
+//     //loca本地存储切换状态
+//     if($(".showbtn").hasClass("showbtn_top")) {
+//         storage.setItem("showbtn", "show");
+//     } else {
+//         storage.setItem("showbtn", "hide");
+//     }
 
-    //导航居左居右 显示隐藏
-    var bwith = $(".left_web").contents().find(".left_body").width(); //导航区域显示宽度
-    var navwidth = $(".left_web").contents().find(".tree-box").width(); //导航条实际宽度
-    if(navwidth > bwith && storage.showbtn == "show") {
-        $(".left_web_nav_l").show();
-        $(".left_web").contents().find(".tree-box").removeClass("tree_box_right");
-    } else {
-        $(".left_web_nav_l,.left_web_nav_r").hide();
-    }
+//     //导航居左居右 显示隐藏
+//     var bwith = $(".left_web").contents().find(".left_body").width(); //导航区域显示宽度
+//     var navwidth = $(".left_web").contents().find(".tree-box").width(); //导航条实际宽度
+//     if(navwidth > bwith && storage.showbtn == "show") {
+//         $(".left_web_nav_l").show();
+//         $(".left_web").contents().find(".tree-box").removeClass("tree_box_right");
+//     } else {
+//         $(".left_web_nav_l,.left_web_nav_r").hide();
+//     }
 
-    //切换旧主题删除 样式
-    if($(".showbtn").hasClass("showbtn_old")) {
-        $(".left_web").contents().find("#tree").removeClass("nav_customized");
-        if(navwidth > bwith) {  //判断显示隐藏左点击
-            $(".left_web_nav_l").show();
-            $(".left_web").contents().find(".tree-box").removeClass("tree_box_right");
-        } else {
-            $(".left_web_nav_l,.left_web_nav_r").hide();
-        }
-    }
+//     //切换旧主题删除 样式
+//     if($(".showbtn").hasClass("showbtn_old")) {
+//         $(".left_web").contents().find("#tree").removeClass("nav_customized");
+//         if(navwidth > bwith) {  //判断显示隐藏左点击
+//             $(".left_web_nav_l").show();
+//             $(".left_web").contents().find(".tree-box").removeClass("tree_box_right");
+//         } else {
+//             $(".left_web_nav_l,.left_web_nav_r").hide();
+//         }
+//     }
 
-});
+// });
 
-/*更改背景*/
-$(".skin_bg .skin_img").on("click", function() {
+// /*更改背景*/
+// $(".skin_bg .skin_img").on("click", function() {
 
-    $("body").addClass("old_style bg_default");
-    $(".home-header").removeClass("home-header_old");
-    $(".showbtn").removeClass("showbtn_old");
-    if(!$(".left_web").contents().find(".nav_cus_tree ")) {
-        $(".left_web").contents().find("#tree").addClass("nav_customized");
-    }
-    var isc = $(this).attr("src");
-    var iss = isc.slice(15);
-    //记录背景图
-    storage.setItem("skin_bg", "bg");
-    storage.skin_bg = iss;
+//     $("body").addClass("old_style bg_default");
+//     $(".home-header").removeClass("home-header_old");
+//     $(".showbtn").removeClass("showbtn_old");
+//     if(!$(".left_web").contents().find(".nav_cus_tree ")) {
+//         $(".left_web").contents().find("#tree").addClass("nav_customized");
+//     }
+//     var isc = $(this).attr("src");
+//     var iss = isc.slice(15);
+//     //记录背景图
+//     storage.setItem("skin_bg", "bg");
+//     storage.skin_bg = iss;
 
-    $(".old_sty").removeClass("bg_default");
-    $(".old_sty").attr("background", "./images/" + iss + "");
-    $(".old_sty").css("background-size", "100%");
+//     $(".old_sty").removeClass("bg_default");
+//     $(".old_sty").attr("background", "./images/" + iss + "");
+//     $(".old_sty").css("background-size", "100%");
 
-    //切换新主题 添加透明样式
-    if(!$(".showbtn").hasClass("showbtn_old")) {
-        $(".left_web").contents().find("#tree").addClass("nav_customized");
-    }
+//     //切换新主题 添加透明样式
+//     if(!$(".showbtn").hasClass("showbtn_old")) {
+//         $(".left_web").contents().find("#tree").addClass("nav_customized");
+//     }
 
-    //横版去除nav_customized
-    if($(".showbtn").hasClass("showbtn_top")) {
-        $(".left_web").contents().find("#tree").removeClass("nav_customized");
-    } else {
-        $(".left_web").contents().find(".nav_pos_left").hide();
-        $(".left_web").contents().find(".nav_pos_right").hide();
-    }
-});
+//     //横版去除nav_customized
+//     if($(".showbtn").hasClass("showbtn_top")) {
+//         $(".left_web").contents().find("#tree").removeClass("nav_customized");
+//     } else {
+//         $(".left_web").contents().find(".nav_pos_left").hide();
+//         $(".left_web").contents().find(".nav_pos_right").hide();
+//     }
+// });
 
-/*更改旧主题*/
-$(".old_style_img").on("click", function() {
-    $("body").removeClass("old_style bg_default");
-    $(".home-header").addClass("home-header_old");
-    $(".left_web").contents().find("#tree").removeClass("nav_customized");
-    $(".showbtn").toggleClass("showbtn_old");
-    //记录背景图
-    storage.setItem("skin_bg", "bg_old");
-});
+// /*更改旧主题*/
+// $(".old_style_img").on("click", function() {
+//     $("body").removeClass("old_style bg_default");
+//     $(".home-header").addClass("home-header_old");
+//     $(".left_web").contents().find("#tree").removeClass("nav_customized");
+//     $(".showbtn").toggleClass("showbtn_old");
+//     //记录背景图
+//     storage.setItem("skin_bg", "bg_old");
+// });
 
-//导航隐藏横向滚动条
-$(function(){
-    if(document.compatMode == "BackCompat") {   //浏览器嗅探，混杂模式
-        var widthback = document.body.clientHeight;
-            $(".left_web").height(widthback+20);
-            $("#right").height(widthback-59);
-    } else {
-        var widthcss = document.documentElement.clientHeight;
-            $(".left_web").height(widthcss+20);
-            $("#right").height(widthcss-59);
-    }
-});
+// //导航隐藏横向滚动条
+// $(function(){
+//     if(document.compatMode == "BackCompat") {   //浏览器嗅探，混杂模式
+//         var widthback = document.body.clientHeight;
+//             $(".left_web").height(widthback+20);
+//             $("#right").height(widthback-59);
+//     } else {
+//         var widthcss = document.documentElement.clientHeight;
+//             $(".left_web").height(widthcss+20);
+//             $("#right").height(widthcss-59);
+//     }
+// });
 
-//删除导航透明层
-$("#menu-btn").on("click", function() {
-    $(".left_model").contents().find("#tree").removeClass("nav_customized");
-});
+// //删除导航透明层
+// $("#menu-btn").on("click", function() {
+//     $(".left_model").contents().find("#tree").removeClass("nav_customized");
+// });
 
-//删除导航透明层
-$(".tree-item-h3").on("click", function() {
-    $("#right").contents().find("#page").addClass("nav_customized");
-});
+// //删除导航透明层
+// $(".tree-item-h3").on("click", function() {
+//     $("#right").contents().find("#page").addClass("nav_customized");
+// });
 
 function toHomePage() {
     $("#right").attr("src", "/right.html ");
@@ -557,28 +557,28 @@ function toHomePage() {
 
 //登录用户未读信息条数
 function getSystemMsgCount() {
-    $.ajax({
-        url:"/systemMsg/getSystemMsgCount",
-        type:"post",
-        dataType : "json",
-        success: function(data){
-            if (data != null && data.modelData != null) {
-                var msgNum = data.modelData.msgNum;
-                if(msgNum==0){
-                    $("#msgSpan").hide();
-                    $("#msgSpan1").hide();
-                }else{
-                    $("#msgSpan").show();
-                    $("#msgSpan1").show();
-                    $("#msgSpan").html(msgNum);
-                    $("#msgSpan1").html(msgNum);
-                }
-            }else{
-                $("#msgSpan").hide();
-                $("#msgSpan1").hide();
-            }
-        }
-    });
+    // $.ajax({
+    //     url:"/systemMsg/getSystemMsgCount",
+    //     type:"post",
+    //     dataType : "json",
+    //     success: function(data){
+    //         if (data != null && data.modelData != null) {
+    //             var msgNum = data.modelData.msgNum;
+    //             if(msgNum==0){
+    //                 $("#msgSpan").hide();
+    //                 $("#msgSpan1").hide();
+    //             }else{
+    //                 $("#msgSpan").show();
+    //                 $("#msgSpan1").show();
+    //                 $("#msgSpan").html(msgNum);
+    //                 $("#msgSpan1").html(msgNum);
+    //             }
+    //         }else{
+    //             $("#msgSpan").hide();
+    //             $("#msgSpan1").hide();
+    //         }
+    //     }
+    // });
 }
 
 //跳转到站内信列表页面
