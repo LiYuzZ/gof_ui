@@ -1055,3 +1055,18 @@ table {
 .nav_pos_iframe{
     left: 315px;
 }
+
+
+/**/
+.showbtn{
+    width:30px;
+    height: 30px;
+    line-height: 30px;
+    background: none;
+    position: absolute;
+    top: -30px;
+    left: 0px;
+}
+.showbtn:hover{
+    background:rgba(49, 38, 131, 0.1);
+}

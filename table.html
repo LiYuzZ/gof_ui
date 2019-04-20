@@ -15,15 +15,18 @@
 	<link rel="stylesheet" type="text/css" href="./css/responsive.css">
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="./js/bootstrap-select/css/bootstrap-select.css">
-	<link rel="stylesheet" type="text/css" href="./css/public_skin.css">
-
+    <link rel="stylesheet" type="text/css" href="./css/public_skin.css">
+    <!-- indexDefault -->
+    <link rel="stylesheet" type="text/css" href="./nav/webapp/css/index.css?v=3" />
+    <link rel="stylesheet" type="text/css" href="./nav/webapp/css/head.css?v=3" />
+    <link rel="stylesheet" type="text/css" href="./nav/webapp/css/custom.css?v=3" />
+    <link rel="stylesheet" type="text/css" href="./css/indexDefault.css">
 	<!-- JQUERY -->
 	<script type="text/javascript" src="./js/jquery/jquery-2.0.3.min.js"></script>
 	<script type="text/javascript" src="./js/jquery.form.js"></script>
 	<script type="text/javascript" src="./js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<!-- BOOTSTRAP -->
 	<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
-
 	<script type="text/javascript" src="./js/table-plugin/bootstrap-table.min.js"></script>
 	<script type="text/javascript" src="./js/table-plugin/locale/bootstrap-table-zh-CN.min.js"></script>
 	<script type="text/javascript" src="./js/jquery-validate/jquery.validate.js"></script>
@@ -38,162 +41,11 @@
 	<!-- ART -->
 	<script type="text/javascript" src="./js/art/artDialog.source.js?skin=idialog"></script>
 	<script type="text/javascript" src="./js/art/plugins/iframeTools.source.js"></script>
-	<script type="text/javascript" src="./js/rotate/jquery.rotate.min.js"></script>
-	<script type="text/javascript">
-
-		$(function () {
-			/**回车事件*/
-			document.onkeydown = function (e) {
-				var ev = document.all ? window.event : e;
-				if (ev.keyCode == 13) {
-					initTable();
-					return false;
-				}
-			}
-			var uAgent = navigator.userAgent;
-			var isAndroid = uAgent.indexOf("Android") > -1 || uAgent.indexOf("Adr") > -1;
-			var isiOS = !!uAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-			/**增加兼容*/
-			if (isAndroid || isiOS) {
-				$(".box-body").css("overflow-x", "auto");
-				$(".box-body").css("width", "100%");
-			}
-
-		});
-		var ctx = "";
-		function validateData(from) {
-			$.validator.setDefaults({
-				submitHandler: function (form) {
-					formOnSubmit();
-				}
-			});
-			$(document).ready(function () {
-				$("#" + from).validate();
-			});
-		}
-
-		function addLogList(type, bussnisId) {
-
-			var dom = $("#addLogList");
-			if (dom.length > 0) {
-
-				$(dom).empty();
-				$(dom).append(getLogString());
-				$("#logType").val(type);
-				$("#businessId").val(bussnisId);
-				bindTime("logStartTimeDesc", "yyyy-MM-dd HH:mm:ss");
-				bindTime("logEndTimeDesc", "yyyy-MM-dd HH:mm:ss");
-				initTableLog();
-			}
-		}
-		function initTableLog() {
-			$("#cusTableLog").bootstrapTable('destroy').bootstrapTable({
-				//
-				method: 'post',
-				contentType: "application/x-www-form-urlencoded",
-				striped: true,
-				cache: false,
-				pagination: true,
-				sortable: true,
-				sortOrder: "asc",
-				pageSize: 10,
-				pageNumber: 1,
-				pageList: [5, 10, 15, 20, 25],
-				queryParamsType: "undefined",
-				url: ctx + "/commonPage/query",
-				queryParams: function (params) {
-					var param = {
-						page: params.pageNumber,
-						rows: params.pageSize,
-						startTime: $('#logStartTimeDesc').val(),
-						endTime: $('#logEndTimeDesc').val(),
-						createUser: $('#logCreateUser').val(),
-						content: $('#logContent').val(),
-						type: $('#logType').val(),
-						businessId: $('#businessId').val(),
-						sort: params.sortName,
-						order: params.sortOrder
-					};
-					return param;
-				},
-				sidePagination: "server",
-				strictSearch: true,
-				pagination: true,
-				idField: "id",
-				columns: [
-					{ field: 'id', title: 'ID', visible: 'False' },
-					{ field: 'createTime', title: '操作日期', align: 'center' },
-					{ field: 'createUser', title: '操作人', align: 'center' },
-					{ field: 'content', title: '操作内容', align: 'center' },
-				]
-			});
-
-			$('#cusTableLog').bootstrapTable('hideColumn', 'id');
-
-		}
-	</script>
-	<style>
-		.error {
-			color: red;
-		}
-
-		.btn,
-		.form-control {
-			border-radius: 0px !important;
-		}
-
-		.box.border.green>.box-title {
-			background-color: #0DBC60;
-		}
-
-		.input-group-addon {
-			border-radius: 0px !important;
-		}
-
-		#addLogList .form-control {
-			height: 28px;
-		}
-
-		#addLogList .control-label {
-			padding-top: 4px;
-		}
-
-		#addLogList .btn {
-			padding: 4px 8px;
-		}
-
-		.box.border.green>.box-title .tools>a {
-			cursor: pointer;
-		}
-
-		.loadImg {
-			position: absolute;
-			width: 100px;
-			height: 100px;
-			z-index: 9998;
-			background-image: url(../../img/load.gif)
-		}
-
-		/**IV*/
-		.MaskLayer {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: #8FB0D1;
-			z-index: 9997;
-			-moz-opacity: 0.45;
-			opacity: 0.45;
-			filter: alpha(opacity=80);
-		}
-	</style>
-	<link rel="stylesheet" href="./js/zTree3.5/css/custom/zTreeStyle.css" type="text/css">
-	<script type="text/javascript" src="./js/zTree3.5/js/jquery.ztree.core-3.5.min.js"></script>
-	<script type="text/javascript" src="./js/zTree3.5/js/jquery.ztree.excheck-3.5.min.js"></script>
-	<script type="text/javascript" src="./js/zTree3.5/js/jquery.ztree.exedit-3.5.min.js"></script>
+    <script type="text/javascript" src="./js/rotate/jquery.rotate.min.js"></script>
+    <!-- 以上为inc引入公共部分-->
+    <!-- indexDefault -->
+	<script type="text/javascript" src="./js/indexDefault.js"></script>
 </head>
-
 <body>
 	<!-- PAGE -->
 	<section id="page">

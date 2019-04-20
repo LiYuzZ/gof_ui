@@ -109,12 +109,12 @@ document.querySelector("#menu-model").onclick = function(e) {
     }
 }
 
-if(parent.location.href == location.href) {
-    var url = sessionStorage.url;
-    if(url != undefined || url != "") {
-        $("#right").prop("src", url);
-    }
-}
+// if(parent.location.href == location.href) {
+//     var url = sessionStorage.url;
+//     if(url != undefined || url != "") {
+//         $("#right").prop("src", url);
+//     }
+// }
 
 window.onhashchange = function() {}
 
@@ -549,7 +549,7 @@ function logout() {
 // });
 
 function toHomePage() {
-    $("#right").attr("src", "/right.html ");
+    $("#right").attr("src", "./index.html ");
     return false;
 }
 

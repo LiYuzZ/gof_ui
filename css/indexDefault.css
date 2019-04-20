@@ -1,0 +1,95 @@
+.error {
+    color: red;
+}
+
+.btn,
+.form-control {
+    border-radius: 0px !important;
+}
+
+.box.border.green>.box-title {
+    background-color: #0DBC60;
+}
+
+.input-group-addon {
+    border-radius: 0px !important;
+}
+
+#addLogList .form-control {
+    height: 28px;
+}
+
+#addLogList .control-label {
+    padding-top: 4px;
+}
+
+#addLogList .btn {
+    padding: 4px 8px;
+}
+
+.box.border.green>.box-title .tools>a {
+    cursor: pointer;
+}
+
+.loadImg {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 9998;
+    background-image: url(../../img/load.gif)
+}
+
+/**IV*/
+.MaskLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #8FB0D1;
+    z-index: 9997;
+    -moz-opacity: 0.45;
+    opacity: 0.45;
+    filter: alpha(opacity=80);
+}
+
+.temporary{
+    width: 100%;
+    height: 100%;
+    background: url(../img/hyper_bg.png) no-repeat;
+    background-position: 0 20px;
+}
+.metismenu{
+    display: none;
+}
+.temporary_list{
+    overflow: hidden;
+    width: 100%;
+    padding-top: 70px;
+}
+.temporary_list li{
+    cursor: pointer;
+    height: 53.36px;
+    line-height: 53.36px
+}
+.temporary_list li a{
+    display: none;
+}
+.temporary_list li:hover{
+    opacity: 0.8;
+    background: rgba(253, 253, 253, 0.07);
+}
+.td-left{
+    width: 250px;
+    z-index: 10;
+    background: linear-gradient(135deg,#8f75da 0,#727cf5 60%);
+    bottom: 0;
+    position: fixed;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+    top: 70px;
+}
+#right{
+    padding-top:70px;
+    padding-left:250px;  
+}

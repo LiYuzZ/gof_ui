@@ -1,21 +1,50 @@
-
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <meta name="renderer" content="webkit" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
-    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" />
-    <title>GoFun运营管理系统</title>
-    <link rel="icon" type="image/x-icon" href="./nav/webapp/favicon.ico" />
-    <link rel="stylesheet" href="./nav/webapp/css/index.css?v=3" />
-    <link rel="stylesheet" href="./nav/webapp/css/head.css?v=3" />
-    <link rel="stylesheet" href="./nav/webapp/css/custom.css?v=3" />
-	
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="renderer" content="webkit">
+	<title>Gofun-CRM平台系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="./css/cloud-admin.css">
+	<link rel="stylesheet" type="text/css" href="./css/weui.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/themes/default.css" id="skin-switcher">
+	<link rel="stylesheet" type="text/css" href="./css/responsive.css">
+	<link rel="stylesheet" type="text/css" href="./css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./js/bootstrap-select/css/bootstrap-select.css">
+    <link rel="stylesheet" type="text/css" href="./css/public_skin.css">
+    <!-- indexDefault -->
+    <link rel="stylesheet" type="text/css" href="./nav/webapp/css/index.css?v=3" />
+    <link rel="stylesheet" type="text/css" href="./nav/webapp/css/head.css?v=3" />
+    <link rel="stylesheet" type="text/css" href="./nav/webapp/css/custom.css?v=3" />
+    <link rel="stylesheet" type="text/css" href="./css/indexDefault.css">
+	<!-- JQUERY -->
+	<script type="text/javascript" src="./js/jquery/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.form.js"></script>
+	<script type="text/javascript" src="./js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<!-- BOOTSTRAP -->
+	<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/table-plugin/bootstrap-table.min.js"></script>
+	<script type="text/javascript" src="./js/table-plugin/locale/bootstrap-table-zh-CN.min.js"></script>
+	<script type="text/javascript" src="./js/jquery-validate/jquery.validate.js"></script>
+	<script type="text/javascript" src="./js/jquery-validate/jquery.validate.addmethod.js"></script>
+	<!-- 多选下拉列表 -->
+	<script type="text/javascript" src="./js/bootstrap-select/js/bootstrap-select.js"></script>
+	<script type="text/javascript" src="./js/bootstrap-select/js/i18n/defaults-zh_CN.min.js"></script>
+	<script type="text/javascript" src="./js/layer/1.9.3/layer.min.js"></script>
+	<script type="text/javascript" src="./js/layer/1.9.3/extend/layer.ext.js"></script>
+	<script type="text/javascript" src="./js/DatePicker/WdatePicker.js"></script>
+	<script type="text/javascript" src="./js/common.js"></script>
+	<!-- ART -->
+	<script type="text/javascript" src="./js/art/artDialog.source.js?skin=idialog"></script>
+	<script type="text/javascript" src="./js/art/plugins/iframeTools.source.js"></script>
+    <script type="text/javascript" src="./js/rotate/jquery.rotate.min.js"></script>
+    <!-- 以上为inc引入公共部分-->
+    <!-- indexDefault -->
+	<script type="text/javascript" src="./js/indexDefault.js"></script>
 </head>
 
 <body class="">
@@ -27,7 +56,7 @@
 <header class="home-header new_home_header">
     <div id="menu-btn"></div>
     <div class="home-logo">
-        <h1>
+        <h1 style="margin-top:0;">
             <a onclick="toHomePage()"><img alt="" src="./nav/webapp/images/portal_Login_logo01.png" /></a>
             <!--<a onclick="toHomePage()"><img th:src="@{/images/logo-crm.png}" alt="" /></a>-->
         </h1>
@@ -42,39 +71,28 @@
         <span id="topLoginName">absolute</span>
     </div>
     <div class="iconfont setting_index"><img src="./nav/webapp/images/nav_btn_set2.png" /></div>
-    <ul id="home-header-usr-ul" style="">
-        <li onclick="showUserInfo()"><i class="iconfont">&#xe66a;</i>个人信息</li>
-        <li onclick="showUpdatePwd()"><i class="iconfont">&#xe65a;</i>修改密码</li>
-        <li onclick="showSuggest()"><i class="iconfont">&#xe61f;</i>建议反馈</li>
-        <li id="logout" onclick="logout()"><i class="iconfont" style="font-size: 16px;">&#xe62e;</i>退出登录</li>
-        <li class="index_skin" style="cursor: auto;padding: 10px 11px; border-top: 1px solid #ddd; color: #c3cac8;">
-            skin
-            <div class="skin_bg">
-                <img class="skin_img" src="./nav/webapp/images/small-bg.jpg" />
-                <img class="skin_img" src="./nav/webapp/images/small-bg2.jpg" />
-                <img class="skin_img" src="./nav/webapp/images/small-bg3.jpg" />
-                <img class="skin_img" src="./nav/webapp/images/small-bg4.jpg" />
-                <img class="skin_img" src="./nav/webapp/images/small-bg5.jpg" />
-                <img class="skin_img" src="./nav/webapp/images/small-bg6.jpg" />
-                <img class="skin_img" src="./nav/webapp/images/small-bg7.jpg" />
-                <img class="old_style_img" src="./nav/webapp/images/bgold.jpg" />
-                <img class="new_style_img" src="./nav/webapp/images/bgold.jpg" />
-            </div>
-        </li>
-    </ul>
 </div>
 <table id="main-table" width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
-        <td>
-            <div class="left_web_nav_l"></div>
-            <div class="left_web_nav_r"></div>
-        </td>
-        <td class="td-hidden" width="190" valign="t0op" style="border-right: 1px solid #ccc;">
-            <iframe name="left" class="left_web" id="left" height="auto" width="100%" border="0" frameborder="0" scrolling="auto" src="./nav/webapp/left.html"></iframe>
+        <td class="td-hidden td-left" width="250" valign="t0op" style="border-right: 1px solid #ccc;">
+            <div class="temporary">
+                <ul class="temporary_list">
+                    <li>
+                        <a></a>
+                    </li>
+                    <li><a>table</a></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+    
+                </ul>
+            </div>
+            <!-- <iframe name="left" class="left_web" id="left" height="auto" width="100%" border="0" frameborder="0" scrolling="auto" src="./nav/webapp/left.html"></iframe> -->
         </td>
         <td class="td-content" valign="top">
-            <div class="showbtn new_showbtn"><em class="" title="导航切换"></em><span class=""></span><i class="iconfont" style="display: none;">&#xe628;</i></div>
-            <iframe name="right" id="right" height="100%" width="100%" border="0" frameborder="0" scrolling="auto" src="./table.html?v=1"></iframe>
+            <div class="showbtn new_showbtn"><em class="" title="导航切换"></em></div>
+            <iframe name="right" id="right" height="100%" width="100%" border="0" frameborder="0" scrolling="auto" src="table.html"></iframe>
         </td>
     </tr>
 </table>
@@ -89,5 +107,12 @@
 <script type="text/javascript" src="./nav/webapp/js/table-plugin/locale/bootstrap-table-zh-CN.min.js"></script>
 <script src="./nav/webapp/js/jquery-validate/jquery.validate.js"></script>
 <script type="text/javascript" defer="3" src="./nav/webapp/js/index.js"></script>
+<script>
+    $(".temporary_list li").on("click",function(){
+        let thisurl = $(this).children("a").text();
+        $("#right").attr("src", thisurl+".html");
+        return false;
+    })
+</script>
 
 </html>
