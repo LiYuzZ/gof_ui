@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/* 2019-04-22 UI_Revision */
+.separator{
+    display: none;
+}
+.container {
+    padding: 20px 35px;
+}

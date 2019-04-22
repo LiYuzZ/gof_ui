@@ -63,8 +63,10 @@ html, body {
     /* line-height: 70px; */
     /* background-color: #343a41; */
     /*background-image: linear-gradient(-90deg, #53708e, #4a6785, #224160);*/
-    box-shadow: 0 2px 6px 0 rgba(0,0,0,0.20);
+    -webkit-box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+    box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
     z-index: 5;
+    padding-left: 250px;
 }
 .home-header_old{
     position: absolute;
@@ -83,6 +85,11 @@ html, body {
     line-height: 49px;
     /*background: #ffffff1c;
      border-right: 2px solid #1b4169c4;*/
+     background: linear-gradient(90deg,#8f75da 0,#8578e3 60%);
+     position: absolute;
+     left: 0px;
+     width: 250px;
+     height: 100%;
 }
 /*logo*/
 .home-logo h1 {
