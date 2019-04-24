@@ -599,9 +599,26 @@ function showSystemMsg() {
 }
 
 //  UI_Revision
+
 $(function(){
-    $('.showbtn').click('on',function(){
-        $(this).toggelClass('11111');
+    //左侧导航隐藏显示
+    if(sessionStorage.showbtn == 'hide'){
+        $('.td-left,#right,.home_show,.home-header,.showbtn,.home-logo').css('transition','0s');
+        $(".showbtn").trigger("click",showbtnClick());
+    }
+    function showbtnClick(){
+        $('.showbtn').toggleClass('toggle_show');
+        $('.td-left').toggleClass('left_show');
+        $('#right').toggleClass('right_show');
+        $('.home-header').toggleClass('home_show');
+        if($('.home-header').hasClass('home_show')){
+            sessionStorage.showbtn = 'hide';
+        }else{
+            sessionStorage.showbtn = 'show';
+        }
+    }
+    $('.showbtn').on('click',function(){
+        showbtnClick();
     })
 })
 

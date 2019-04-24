@@ -90,6 +90,8 @@ html, body {
      left: 0px;
      width: 250px;
      height: 100%;
+     -webkit-transition: all .2s ease-out;
+     transition: all .2s ease-out;
 }
 /*logo*/
 .home-logo h1 {
@@ -1030,11 +1032,11 @@ table {
 
 /* 20190322 new_customized */
 .home-logo img {
-    width: 210px;
-     height:auto;
+    width: 180px;
+    height: auto;
     display: block;
     margin-top: 22px;
-    margin-left: 20px;
+    margin-left: 2px;
     display: inline-block;
 }
 @media screen and (max-width: 768px) {
@@ -1071,8 +1073,10 @@ table {
     line-height: 30px;
     background: none;
     position: absolute;
-    top: -30px;
-    left: 0px;
+    top: 40px;
+    left: 260px;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
 }
 .showbtn:hover{
     background:rgba(49, 38, 131, 0.1);

@@ -57,7 +57,7 @@
     width: 100%;
     height: 100%;
     background: url(../img/hyper_bg.png) no-repeat;
-    background-position: 0 20px;
+    background-position: 0 0px;
 }
 .metismenu{
     display: none;
@@ -65,7 +65,7 @@
 .temporary_list{
     overflow: hidden;
     width: 100%;
-    padding-top: 70px;
+    padding-top: 50px;
 }
 .temporary_list li{
     cursor: pointer;
@@ -89,7 +89,25 @@
     transition: all .2s ease-out;
     top: 70px;
 }
+.left_show{
+    width: 0;
+}
 #right{
     padding-top:70px;
     padding-left:250px;  
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+.td-content .toggle_show{
+    left: 30px;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+.td-content .right_show{
+    padding-left:0 !important;
+}
+.home_show .home-logo{
+    left: -250px;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
 }
