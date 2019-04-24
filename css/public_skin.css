@@ -52,9 +52,9 @@ table .btn,table .form-control {
     padding: 4px 6px;
 }
 .btn-primary {
-    color: #ffffff;
-    background-color: #5e87b0;
-    border-color: #507aa4;
+    color: #fff;
+    background-color: #727cf5;
+    border-color: #727cf5;
 }
 .pagination-detail .btn-group .btn{
     padding:2px 10px;
@@ -111,33 +111,44 @@ table .btn,table .form-control {
     border-radius: 4px;
     -webkit-box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
     box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+    padding: 25px;
 }
 .box.border.green > .box-title {
     background-color: #ffffff !important;
     border-radius: 4px 4px 0 0;
-    border-bottom: 1px solid #ced0ca;
-    padding-left: 20px;
+    /* border-bottom: 1px solid #ced0ca; */
+    border: none;
+    padding: 0px;
+    min-height: 0;
+    margin-bottom: 8px;
 }
-
+.box.border.green > .box-title .tools > a :hover{
+    color: #727cf5 !important;
+    opacity: 1 !important;
+}
 .box.border.green > .box-title h4 {
     color: #58666e !important;
     font-weight: 800;
     font-size: 15px;
-    line-height: 32px;
+    line-height: 0;
+    margin-bottom: 0;
 }
 .box.border.green > .box-title h4 i{
     color: #58666e !important;
 }
 .box.border.green > .box-title .tools > a {
-    color: #0DBC60 !important;
+    color: #727cf5 !important;
     line-height: 32px;
+    line-height: 0;
 }
 .box.border > .box-title .tools, .box.solid > .box-title .tools{
     margin-bottom: 0;
+    line-height: 0;
+    min-height: 0;
 }
 .box.border .box-body, .box.solid .box-body {
     border-radius: 0 0 4px 4px;
-    padding: 20px;
+    padding: 0px;
     background-color: #FFFFFF;
 }
 
