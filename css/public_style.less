@@ -1,0 +1,135 @@
+@charset "UTF-8";
+/* 2019-04-22 UI_Revision */
+.separator {
+  display: none;
+}
+.container {
+  padding: 20px 35px;
+}
+.tab_default {
+  &.tab_block {
+    .tab_bar {
+      span {
+        display: block;
+        float: left;
+        min-width: 80px;
+        color: #6c757d;
+        background-color: #e3eaef;
+        text-align: center;
+        &.on {
+          color: #fff;
+          background-color: #727cf5;
+        }
+      }
+    }
+  }
+  .tab_bar {
+    height: 44px;
+    border-bottom: 2px solid rgba(152, 166, 173, 0.2);
+    box-sizing: border-box;
+    span {
+      padding: 0 24px;
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      top: 2px;
+      height: 100%;
+      text-align: center;
+      &.on {
+        border-bottom: 2px solid #727cf5;
+      }
+      a {
+        display: inline-block;
+        height: 100%;
+        line-height: 44px;
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+  }
+  .tab_content {
+    padding: 12px 0;
+    .tab_content_item {
+      display: none;
+      &.on {
+        display: block;
+      }
+    }
+  }
+}
+.tab_left {
+  position: relative;
+  .tab_bar {
+    width: 80px;
+    span {
+      display: block;
+      height: 40px;
+      line-height: 40px;
+      color: #6c757d;
+      background-color: #e3eaef;
+      text-align: center;
+      cursor: pointer;
+      &.on {
+        color: #fff;
+        background-color: #727cf5;
+      }
+    }
+    &:after {
+      content: '.';
+      display: block;
+      visibility: hidden;
+      height: 0;
+      font-size: 0;
+      clear: both;
+    }
+  }
+  .tab_content {
+    position: absolute;
+    left: 80px;
+    top: 0;
+    padding: 0 24px;
+    width: 100%;
+    overflow-block: break-word;
+    .tab_content_item {
+      display: none;
+
+      &.on {
+        display: block;
+      }
+    }
+  }
+}
+.accordions {
+  background-color: transparent;
+  width: 100%;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+  box-shadow: 0 0 35px 0 rgba(154, 161, 17, 0.15);
+  .accordions_item {
+    background-color: #fff;
+    .accordions_title {
+      height: 40px;
+      line-height: 16px;
+      padding: 12px 24px;
+      position: relative;
+      border-bottom: 1px solid #e3eaef;
+      cursor: pointer;
+      i {
+        font-size: 12px;
+        position: absolute;
+        right: 12px;
+        top: 12px;
+      }
+    }
+    .accordions_content {
+      display: none;
+      overflow: hidden;
+      .accordions_content_inner {
+        width: 100%;
+        overflow-wrap: break-word;
+        box-sizing: border-box;
+        padding: 12px 24px;
+      }
+    }
+  }
+}
