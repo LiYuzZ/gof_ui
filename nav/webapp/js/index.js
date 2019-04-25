@@ -103,11 +103,11 @@ document.querySelector("#menu-btn").onclick = function() {
         document.querySelector("#menu-model").style.display = "none";
     }
 }
-document.querySelector("#menu-model").onclick = function(e) {
-    if(e.target.getAttribute("id") == "menu-model") {
-        this.style.display = "none";
-    }
-}
+// document.querySelector("#menu-model").onclick = function(e) {
+//     if(e.target.getAttribute("id") == "menu-model") {
+//         this.style.display = "none";
+//     }
+// }
 
 // if(parent.location.href == location.href) {
 //     var url = sessionStorage.url;
