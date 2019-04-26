@@ -3,11 +3,11 @@
 /*gofun  tubiao*/
 @font-face {
     font-family: 'iconfont';  /* project id 790454 */
-    src: url('//at.alicdn.com/t/font_790454_vwb4dgzwuq.eot');
-    src: url('//at.alicdn.com/t/font_790454_vwb4dgzwuq.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_790454_vwb4dgzwuq.woff') format('woff'),
-    url('//at.alicdn.com/t/font_790454_vwb4dgzwuq.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_790454_vwb4dgzwuq.svg#iconfont') format('svg');
+    src: url('https://at.alicdn.com/t/font_790454_vwb4dgzwuq.eot');
+    src: url('https://at.alicdn.com/t/font_790454_vwb4dgzwuq.eot?#iefix') format('embedded-opentype'),
+    url('https://at.alicdn.com/t/font_790454_vwb4dgzwuq.woff') format('woff'),
+    url('https://at.alicdn.com/t/font_790454_vwb4dgzwuq.ttf') format('truetype'),
+    url('https://at.alicdn.com/t/font_790454_vwb4dgzwuq.svg#iconfont') format('svg');
 }
 .iconfont {
     font-family:"iconfont" !important;
@@ -292,10 +292,26 @@ body table .no-records-found td{
 .transfer{
 	width: 800px;
 }
-
-
-
-
+.btn-group-box{
+    display:inline-block;
+    color: #98a6ad;
+    border: none;
+    background: none
+}
+.btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open .dropdown-toggle.btn-danger{
+    color: #2b3af0;
+    background: none;
+    box-shadow: none;
+}
+.btn-group-more{
+    padding: 0;
+    background: none;
+    border: none;
+    color: #2b3af0;
+}
+.btn-group-more:hover{
+    color: #2b3af0;
+}
 
 
 

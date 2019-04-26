@@ -88,3 +88,14 @@ function initTableLog() {
     $('#cusTableLog').bootstrapTable('hideColumn', 'id');
 
 }
+$(function(){
+    $('.btn-group-more').on('click',function(){
+        var btnLeft = $('.btn-group-more-left').width()-15;
+        $('.btn-group-more-left').css('left',-btnLeft);
+    })
+
+    $('.btn-group-more').on('click',function(){
+        var btnRight = $('.btn-group-more-right').width();
+        $('.btn-group-more-right').css('right',btnRight);
+    })
+})

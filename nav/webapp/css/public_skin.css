@@ -3,11 +3,11 @@
 /*gofun  tubiao*/
 @font-face {
     font-family: 'iconfont';  /* project id 790454 */
-    src: url('//at.alicdn.com/t/font_790454_vwb4dgzwuq.eot');
-    src: url('//at.alicdn.com/t/font_790454_vwb4dgzwuq.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_790454_vwb4dgzwuq.woff') format('woff'),
-    url('//at.alicdn.com/t/font_790454_vwb4dgzwuq.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_790454_vwb4dgzwuq.svg#iconfont') format('svg');
+    src: url('https://at.alicdn.com/t/font_790454_vwb4dgzwuq.eot');
+    src: url('https://at.alicdn.com/t/font_790454_vwb4dgzwuq.eot?#iefix') format('embedded-opentype'),
+    url('https://at.alicdn.com/t/font_790454_vwb4dgzwuq.woff') format('woff'),
+    url('https://at.alicdn.com/t/font_790454_vwb4dgzwuq.ttf') format('truetype'),
+    url('https://at.alicdn.com/t/font_790454_vwb4dgzwuq.svg#iconfont') format('svg');
 }
 .iconfont {
     font-family:"iconfont" !important;
