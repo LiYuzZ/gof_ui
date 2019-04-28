@@ -94,6 +94,7 @@ table .btn,table .form-control {
     background: none repeat scroll 0 0 #fafbfc;
     height: 100%;
     min-width: 320px;
+    overflow-y: scroll;
 }
 .container{
 
@@ -141,6 +142,12 @@ table .btn,table .form-control {
     line-height: 32px;
     line-height: 0;
 }
+.box.border.green > .box-title .tools > a:hover{
+    color: #4e5bf2 !important;
+    line-height: 32px;
+    line-height: 0;
+    
+}
 .box.border > .box-title .tools, .box.solid > .box-title .tools{
     margin-bottom: 0;
     line-height: 0;
@@ -172,7 +179,8 @@ table .btn,table .form-control {
     text-align: center !important;
     line-height: 1.428571429;
     vertical-align: middle;
-    border-top: 1px solid #dddddd;
+    border: none;
+    border-top: 1px solid #e3eaef;
 }
 .fixed-table-pagination .btn-group,.fixed-table-pagination .btn-group-vertical {
     position: relative;
@@ -307,14 +315,32 @@ body table .no-records-found td{
     padding: 0;
     background: none;
     border: none;
-    color: #2b3af0;
+    color: #727cf5;
 }
 .btn-group-more:hover{
-    color: #2b3af0;
+    color: #4e5bf2;
 }
-
-
-
+.btn-group-more-left{
+    background: #fff;
+}
+.btn-group-more-left li a{
+    display: block;
+    width: 100%;
+    padding: .375rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #6c757d;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    line-height: 32px;
+}
+.btn-group-more-left li a:focus, .btn-group-more-left li a:hover {
+    color: #272e37;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
 
 
 

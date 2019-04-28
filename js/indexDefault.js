@@ -88,7 +88,7 @@ function initTableLog() {
     $('#cusTableLog').bootstrapTable('hideColumn', 'id');
 
 }
-$(function(){
+$(function(){  //右上角更多选项
     $('.btn-group-more').on('click',function(){
         var btnLeft = $('.btn-group-more-left').width()-15;
         $('.btn-group-more-left').css('left',-btnLeft);
